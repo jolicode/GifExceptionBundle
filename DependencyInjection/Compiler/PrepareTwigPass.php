@@ -1,9 +1,15 @@
 <?php
 
+/*
+ * This file is part of the GifExceptionBundle Project.
+ *
+ * (c) Loïck Piera <pyrech@gmail.com>
+ */
+
 namespace Joli\GifExceptionBundle\DependencyInjection\Compiler;
 
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class PrepareTwigPass implements CompilerPassInterface
 {

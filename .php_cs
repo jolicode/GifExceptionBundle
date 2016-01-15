@@ -10,6 +10,7 @@ Symfony\CS\Fixer\Contrib\HeaderCommentFixer::setHeader($header);
 
 $finder = Symfony\CS\Finder\DefaultFinder::create()
     ->in(array(__DIR__))
+    ->exclude('app/cache')
 ;
 
 return Symfony\CS\Config\Config::create()
@@ -19,9 +20,10 @@ return Symfony\CS\Config\Config::create()
         'header_comment',           // Add the provided header comment ($header)
         'newline_after_open_tag',   // Force new line after <?php
         'ordered_use',              // Order "use" alphabetically
-        'short_array_syntax',       // Replace array() by []
+        'long_array_syntax',        // Replace [] by array()
         '-empty_return',            // Keep return null;
         'phpdoc_order',             // Clean up the /** php doc */
+        'concat_with_spaces',       // Force space around concatenation operator
 
         // Alignment war start here.
         '-align_double_arrow',      // Force no double arrow align

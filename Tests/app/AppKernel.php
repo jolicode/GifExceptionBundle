@@ -18,12 +18,12 @@ class AppKernel extends Kernel
      */
     public function registerBundles()
     {
-        $bundles = [
+        $bundles = array(
             new \Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new \Symfony\Bundle\TwigBundle\TwigBundle(),
-        ];
+        );
 
-        if (in_array($this->getEnvironment(), ['dev', 'test'])) {
+        if (in_array($this->getEnvironment(), array('dev', 'test'))) {
             $bundles[] = new \Joli\GifExceptionBundle\GifExceptionBundle();
         }
 
