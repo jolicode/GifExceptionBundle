@@ -30,7 +30,7 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function it_display_gif_on_exception_page_if_the_bundle_is_enabled()
+    public function it_displays_gif_on_exception_page_if_the_bundle_is_enabled()
     {
         $kernel = new \Joli\GifExceptionBundle\Tests\app\AppKernel('dev', true);
         $kernel->boot();
@@ -40,5 +40,21 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
 
         self::assertSame(404, $response->getStatusCode());
         self::assertNotFalse(strpos($response->getContent(), '<img alt="Gif Exception"'));
+    }
+
+    /**
+     * @test
+     */
+    public function it_adds_gifs_in_twig_global_variables()
+    {
+        $kernel = new \Joli\GifExceptionBundle\Tests\app\AppKernel('dev', true);
+        $kernel->boot();
+
+        /** @var \Twig_Environment $twig */
+        $twig = $kernel->getContainer()->get('twig');
+        $globals = $twig->getGlobals();
+
+        self::assertArrayHasKey('fail_gifs', $globals);
+        self::assertNotEmpty($globals['fail_gifs']);
     }
 }
