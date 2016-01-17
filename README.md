@@ -8,7 +8,7 @@ Very important bundle to make Symfony Exception looks like /r/gifs.
 
 ![Demo](Resources/doc/images/screenshot.png)
 
-*Be aware that we could not be held responsible for any loss of productivity.*
+*Be aware that we can not be held responsible for any loss of productivity.*
 
 ## Installation
 
@@ -58,7 +58,7 @@ And some meta documentation:
 
 * [All contributors](https://github.com/jolicode/GifExceptionBundle/graphs/contributors)
 
-Do not hesitate to open PRs to add more gifs, it will be very welcomed! :wink:
+Do not hesitate to open PRs to add more gifs in [Resources/public/images/](Resources/public/images/), it will be very welcomed! :wink:
 
 ## License
 
