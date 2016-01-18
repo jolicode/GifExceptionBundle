@@ -1,2 +1,6 @@
 framework:
+    templating: { engines: ['twig'] }
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: ~
     secret: "ThisTokenIsEnoughSecretForOurTests"
