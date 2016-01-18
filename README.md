@@ -8,11 +8,11 @@ Very important bundle to make Symfony Exception looks like /r/gifs.
 
 ![Demo](Resources/doc/images/screenshot.png)
 
-*Be aware that we can not be held responsible for any loss of productivity.*
+*Be aware that we can not be held responsible for any loss of productivity during development.*
 
 ## Installation
 
-Use [Composer](http://getcomposer.org/) to install GifExceptionBundle in your project:
+Use [Composer](http://getcomposer.org/) to install `GifExceptionBundle` in your project:
 
 ```shell
 composer require "jolicode/gif-exception-bundle"
@@ -20,7 +20,7 @@ composer require "jolicode/gif-exception-bundle"
 
 ## Usage
 
-Just enable the bundle in **dev** environnement, and you're done:
+Just enable the bundle in **dev** environment, and you're done:
 
 ```php
     /**
@@ -41,6 +41,11 @@ Just enable the bundle in **dev** environnement, and you're done:
     }
 ```
 
+## Add some more gifs!
+
+We need you to improve the included GIFs! Do not hesitate to open PRs to add 
+more gifs in [Resources/public/images/](Resources/public/images/), it will be very welcomed! :wink:
+
 ## Further documentation
 
 You can see the current and past versions using one of the following:
@@ -56,9 +61,8 @@ And some meta documentation:
 
 ## Credits
 
-* [All contributors](https://github.com/jolicode/GifExceptionBundle/graphs/contributors)
-
-Do not hesitate to open PRs to add more gifs in [Resources/public/images/](Resources/public/images/), it will be very welcomed! :wink:
+* [All contributors](https://github.com/jolicode/GifExceptionBundle/graphs/contributors);
+* All GIFs included belong to their respective authors.
 
 ## License
 
