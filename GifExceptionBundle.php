@@ -21,4 +21,9 @@ class GifExceptionBundle extends Bundle
 
         $container->addCompilerPass(new PrepareTwigPass(), PassConfig::TYPE_BEFORE_REMOVING);
     }
+
+    public function getParent()
+    {
+        return 'TwigBundle';
+    }
 }
