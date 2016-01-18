@@ -6,7 +6,7 @@
 
 Very important bundle to make Symfony Exception looks like /r/gifs.
 
-![Demo](Resources/doc/images/screenshot.png)
+![Demo](Resources/doc/images/demo.gif)
 
 *Be aware that we can not be held responsible for any loss of productivity during development.*
 
