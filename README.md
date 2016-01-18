@@ -12,15 +12,13 @@ Very important bundle to make Symfony Exception looks like /r/gifs.
 
 ## Installation
 
-Use [Composer](http://getcomposer.org/) to install `GifExceptionBundle` in your project:
+- Use [Composer](http://getcomposer.org/) to install `GifExceptionBundle` in your project:
 
 ```shell
 composer require "jolicode/gif-exception-bundle"
 ```
 
-## Usage
-
-Just enable the bundle in **dev** environment, and you're done:
+- Enable the bundle in **dev** environment:
 
 ```php
     /**
@@ -40,6 +38,14 @@ Just enable the bundle in **dev** environment, and you're done:
         return $bundles;
     }
 ```
+
+- Then install the assets to make gifs accessible to public:
+
+```shell
+app/console assets:install
+```
+
+Now enjoy your exceptions \o/
 
 ## Add some more gifs!
 
