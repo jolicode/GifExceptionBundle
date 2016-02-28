@@ -35,11 +35,31 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
         $kernel = new \Joli\GifExceptionBundle\Tests\app\AppKernel('dev', true);
         $kernel->boot();
 
-        $request = Request::create('/');
+        $request = Request::create('/error-404');
         $response = $kernel->handle($request);
 
         self::assertSame(404, $response->getStatusCode());
         self::assertNotFalse(strpos($response->getContent(), '<img alt="Gif Exception"'));
+
+        $dom = new \DOMDocument();
+        $dom->loadHTML($response->getContent());
+        $xpath = new \DomXpath($dom);
+        $img = $xpath->query('//img[@alt="Gif Exception"]')->item(0);
+
+        self::assertStringMatchesFormat('%s/gifexception/images/404/%s.gif', $img->getAttribute('src'));
+
+        $request = Request::create('/error-418');
+        $response = $kernel->handle($request);
+
+        self::assertSame(418, $response->getStatusCode());
+        self::assertNotFalse(strpos($response->getContent(), '<img alt="Gif Exception"'));
+
+        $dom = new \DOMDocument();
+        $dom->loadHTML($response->getContent());
+        $xpath = new \DomXpath($dom);
+        $img = $xpath->query('//img[@alt="Gif Exception"]')->item(0);
+
+        self::assertStringMatchesFormat('%s/gifexception/images/other/%s.gif', $img->getAttribute('src'));
     }
 
     /**
@@ -56,5 +76,9 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
 
         self::assertArrayHasKey('fail_gifs', $globals);
         self::assertNotEmpty($globals['fail_gifs']);
+        self::assertArrayHasKey('other', $globals['fail_gifs']);
+        self::assertArrayHasKey('404', $globals['fail_gifs']);
+        self::assertNotEmpty($globals['fail_gifs']['other']);
+        self::assertNotEmpty($globals['fail_gifs']['404']);
     }
 }

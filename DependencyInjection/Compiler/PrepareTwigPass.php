@@ -29,10 +29,15 @@ class PrepareTwigPass implements CompilerPassInterface
     private function addTwigVariable(ContainerBuilder $container)
     {
         $gifs = array();
-        $pattern = __DIR__ . '/../../Resources/public/images/*.gif';
 
+        $pattern = __DIR__ . '/../../Resources/public/images/*/*.gif';
         foreach (glob($pattern) as $path) {
-            $gifs[] = basename($path);
+            $gifs[basename(dirname($path))][] = basename($path);
+        }
+
+        $pattern = __DIR__ . '/../../Resources/public/images/*.gif';
+        foreach (glob($pattern) as $path) {
+            $gifs['other'][] = basename($path);
         }
 
         $twigDefinition = $container->getDefinition('twig');

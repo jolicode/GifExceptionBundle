@@ -1,0 +1,7 @@
+test_routing_404:
+    path:     /error-404
+    defaults: { _controller: Joli\GifExceptionBundle\Tests\src\TestController::error404Action }
+
+test_routing_418:
+    path:     /error-418
+    defaults: { _controller: Joli\GifExceptionBundle\Tests\src\TestController::error418Action }

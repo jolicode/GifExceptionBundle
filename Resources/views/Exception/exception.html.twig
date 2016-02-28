@@ -2,7 +2,8 @@
     <div class="block-exception-detected clear-fix">
         <div class="illustration-exception">
             {# Here is the magic #}
-            <img alt="Gif Exception" src="{{ asset( 'bundles/gifexception/images/' ~ random(fail_gifs)) }}" style="width:145px" />
+            {% set gif_dir = fail_gifs[status_code] is defined ? status_code : 'other' %}
+            <img alt="Gif Exception" src="{{ asset( 'bundles/gifexception/images/' ~ gif_dir ~ '/' ~ random(fail_gifs[gif_dir])) }}" style="width:145px" />
         </div>
         <div class="text-exception">
             <div class="open-quote">
