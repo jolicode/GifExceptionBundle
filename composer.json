@@ -23,5 +23,10 @@
         "phpunit/phpunit": "~4.8|~5.0",
         "symfony/config": "~2.3|~3.0",
         "symfony/dependency-injection": "~2.3|~3.0"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
     }
 }
