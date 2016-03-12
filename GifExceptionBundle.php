@@ -8,8 +8,6 @@
 
 namespace Joli\GifExceptionBundle;
 
-use Joli\GifExceptionBundle\DependencyInjection\Compiler\PrepareTwigPass;
-use Symfony\Component\DependencyInjection\Compiler\PassConfig;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
@@ -19,7 +17,7 @@ class GifExceptionBundle extends Bundle
     {
         parent::build($container);
 
-        $container->addCompilerPass(new PrepareTwigPass(), PassConfig::TYPE_BEFORE_REMOVING);
+        $container->addCompilerPass($this->getContainerExtension());
     }
 
     public function getParent()

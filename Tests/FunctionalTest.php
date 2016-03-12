@@ -24,7 +24,10 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
         $response = $kernel->handle($request);
 
         self::assertSame(404, $response->getStatusCode());
-        self::assertFalse(strpos($response->getContent(), '<img alt="Gif Exception"'));
+
+        $image = $this->getImage($response->getContent());
+
+        self::assertFalse($image->hasAttribute('data-gif'));
     }
 
     /**
@@ -39,46 +42,34 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
         $response = $kernel->handle($request);
 
         self::assertSame(404, $response->getStatusCode());
-        self::assertNotFalse(strpos($response->getContent(), '<img alt="Gif Exception"'));
 
-        $dom = new \DOMDocument();
-        $dom->loadHTML($response->getContent());
-        $xpath = new \DomXpath($dom);
-        $img = $xpath->query('//img[@alt="Gif Exception"]')->item(0);
+        $image = $this->getImage($response->getContent());
 
-        self::assertStringMatchesFormat('%s/gifexception/images/404/%s.gif', $img->getAttribute('src'));
+        self::assertTrue($image->hasAttribute('data-gif'));
+        self::assertStringMatchesFormat('%s/gifexception/images/404/%s.gif', $image->getAttribute('src'));
 
         $request = Request::create('/error-418');
         $response = $kernel->handle($request);
 
         self::assertSame(418, $response->getStatusCode());
-        self::assertNotFalse(strpos($response->getContent(), '<img alt="Gif Exception"'));
 
-        $dom = new \DOMDocument();
-        $dom->loadHTML($response->getContent());
-        $xpath = new \DomXpath($dom);
-        $img = $xpath->query('//img[@alt="Gif Exception"]')->item(0);
+        $image = $this->getImage($response->getContent());
 
-        self::assertStringMatchesFormat('%s/gifexception/images/other/%s.gif', $img->getAttribute('src'));
+        self::assertTrue($image->hasAttribute('data-gif'));
+        self::assertStringMatchesFormat('%s/gifexception/images/other/%s.gif', $image->getAttribute('src'));
     }
 
     /**
-     * @test
+     * @param $content
+     *
+     * @return \DOMElement
      */
-    public function it_adds_gifs_in_twig_global_variables()
+    private function getImage($content)
     {
-        $kernel = new \Joli\GifExceptionBundle\Tests\app\AppKernel('dev', true);
-        $kernel->boot();
+        $dom = new \DOMDocument();
+        $dom->loadHTML($content);
+        $xpath = new \DomXpath($dom);
 
-        /** @var \Twig_Environment $twig */
-        $twig = $kernel->getContainer()->get('twig');
-        $globals = $twig->getGlobals();
-
-        self::assertArrayHasKey('fail_gifs', $globals);
-        self::assertNotEmpty($globals['fail_gifs']);
-        self::assertArrayHasKey('other', $globals['fail_gifs']);
-        self::assertArrayHasKey('404', $globals['fail_gifs']);
-        self::assertNotEmpty($globals['fail_gifs']['other']);
-        self::assertNotEmpty($globals['fail_gifs']['404']);
+        return $xpath->query('//img[@alt="Exception detected!"]')->item(0);
     }
 }
