@@ -58,6 +58,10 @@ class GifExceptionExtension extends Extension implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container)
     {
+        if (!$container->getParameter('kernel.debug')) {
+            return;
+        }
+
         $definition = $container->getDefinition('gif_exception.listener.replace_image');
 
         $definition->addArgument($container->getParameter('twig.exception_listener.controller'));
