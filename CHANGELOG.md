@@ -1,6 +1,6 @@
 # Changes between versions
 
-## Not yet released
+## 1.0.1 (2016-06-27)
 
 * Fixed DI compiler pass for debug disabled environment
 
