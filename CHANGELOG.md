@@ -1,5 +1,9 @@
 # Changes between versions
 
+## 1.1.0 (2016-06-27)
+
+* Added more GIFs
+
 ## 1.0.1 (2016-06-27)
 
 * Fixed DI compiler pass for debug disabled environment
