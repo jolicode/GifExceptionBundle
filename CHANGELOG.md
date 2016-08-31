@@ -1,6 +1,6 @@
 # Changes between versions
 
-## Not yet released
+## 1.2.0 (2016-08-31)
 
 * Added more GIFs
 
