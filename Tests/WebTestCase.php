@@ -38,10 +38,10 @@ abstract class WebTestCase extends BaseWebTestCase
      * @param array $options
      * @return string The output.
      */
-    protected function getOutputForCommand($command, $commandName, array $args = [], array $options = [])
+    protected function getOutputForCommand($command, $commandName, array $args = array(), array $options = array())
     {
         if (empty($args)) {
-            $args = ['command' => $commandName];
+            $args = array('command' => $commandName);
         }
 
         $this->application->add($command);

@@ -42,7 +42,7 @@ class GifOptimizerCommandTest extends WebTestCase
     public function testExceptionRaisedForInvalidImageDir()
     {
         $command = new GifOptimizerCommand();
-        $this->getOutputForCommand($command, self::COMMAND_NAME, ['image_dir' => 'foobar']);
+        $this->getOutputForCommand($command, self::COMMAND_NAME, array('image_dir' => 'foobar'));
     }
 
     public function testGifIsResizedToExpectedWidth()
@@ -51,8 +51,8 @@ class GifOptimizerCommandTest extends WebTestCase
 
         $expectedWidth = 145;
         $command = new GifOptimizerCommand();
-        $args = ['image_dir' => __DIR__];
-        $options = ['resize_width' => $expectedWidth];
+        $args = array('image_dir' => __DIR__);
+        $options = array('resize_width' => $expectedWidth);
 
         try {
             $this->getOutputForCommand($command, self::COMMAND_NAME, $args, $options);
@@ -73,7 +73,7 @@ class GifOptimizerCommandTest extends WebTestCase
         $originalSize = filesize($this->testGif);
 
         $command = new GifOptimizerCommand();
-        $args = ['image_dir' => __DIR__];
+        $args = array('image_dir' => __DIR__);
 
         try {
             $this->getOutputForCommand($command, self::COMMAND_NAME, $args);
