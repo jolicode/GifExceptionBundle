@@ -21,7 +21,18 @@ set_time_limit(0);
  */
 $loader = require __DIR__.'/../vendor/autoload.php';
 
-$input = new ArgvInput([__DIR__ . '/optimizer.php', 'jolicode:gifexception:optimize']);
+$args = $_SERVER['argv'];
+
+// Strip application name
+array_shift($args);
+
+// Prepend command name
+array_unshift($args, \Joli\GifExceptionBundle\Command\GifOptimizerCommand::COMMAND_NAME);
+
+// Prepend application name (ArgvInput strips it again so needs to be here)
+array_unshift($args, __DIR__ . '/optimizer.php');
+
+$input = new ArgvInput($args);
 $kernel = new AppKernel('dev', false);
 $application = new Application($kernel);
 $application->run($input);

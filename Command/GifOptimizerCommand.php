@@ -19,6 +19,11 @@ use Symfony\Component\Console\Output\OutputInterface;
 class GifOptimizerCommand extends Command
 {
     /**
+     * @var string The name of the command.
+     */
+    const COMMAND_NAME = 'jolicode:gifexception:optimize';
+
+    /**
      * @var string
      */
     const DEFAULT_OPTIMIZATION_LEVEL = '-O3';
@@ -39,7 +44,7 @@ class GifOptimizerCommand extends Command
     protected function configure()
     {
         $this
-            ->setName('jolicode:gifexception:optimize')
+            ->setName(self::COMMAND_NAME)
             ->addArgument(
                 'image_dir',
                 InputArgument::OPTIONAL,
