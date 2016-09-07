@@ -54,7 +54,7 @@ more gifs in [Resources/public/images/](Resources/public/images/), it will be ve
 
 ## Optimizing gifs
 
-If you are adding gifs we strongly recommend optimizing them. There is a tool to aid with this. 
+If you are adding gifs we strongly recommend optimizing them. There is a tool to aid with this (you will need to install [gifsicle](http://www.lcdf.org/gifsicle/)).
 
 ```
 bin/optimizer.php
