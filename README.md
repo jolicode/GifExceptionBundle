@@ -52,6 +52,24 @@ Now enjoy your exceptions \o/
 We need you to improve the included GIFs! Do not hesitate to open PRs to add 
 more gifs in [Resources/public/images/](Resources/public/images/), it will be very welcomed! :wink:
 
+## Optimizing gifs
+
+If you are adding gifs we strongly recommend optimizing them. There is a tool to aid with this. 
+
+```
+bin/optimizer.php
+```
+
+You can also run this from a Symfony project if you have this as an installed bundle via:
+
+```
+bin/console jolicode:gifexception:optimize
+```
+
+Although it would probably make more sense to use the former and push up the optimized gifs.
+ 
+It uses [gifsicle](https://www.lcdf.org/gifsicle/) to optimize gifs via the [image-optimizer](https://github.com/psliwa/image-optimizer) library. 
+
 ## Further documentation
 
 You can see the current and past versions using one of the following:
