@@ -1,5 +1,10 @@
 # Changes between versions
 
+## Not yet released
+
+* Added a script to optimize GIFs
+* Optimized all GIFs
+
 ## 1.2.0 (2016-08-31)
 
 * Added more GIFs
