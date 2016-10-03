@@ -26,7 +26,7 @@ class GifOptimizerCommand extends Command
     /**
      * @var string
      */
-    const DEFAULT_OPTIMIZATION_LEVEL = '-O3';
+    const DEFAULT_OPTIMIZATION_LEVEL = '-O1';
 
     /**
      * @var int
