@@ -45,7 +45,7 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
 
         $image = $this->getImage($response->getContent());
 
-        self::assertTrue($image->hasAttribute('data-gif'));
+        self::assertTrue($image->hasAttribute('data-gif'), "Image was not replaced.");
         self::assertStringMatchesFormat('%s/gifexception/images/404/%s.gif', $image->getAttribute('src'));
 
         $request = Request::create('/error-418');
@@ -67,9 +67,18 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
     private function getImage($content)
     {
         $dom = new \DOMDocument();
-        $dom->loadHTML($content);
+        @$dom->loadHTML($content); // svg throw a warning
         $xpath = new \DomXpath($dom);
 
-        return $xpath->query('//img[@alt="Exception detected!"]')->item(0);
+        // SF < 3.2
+        $image = $xpath->query('//img[@alt="Exception detected!"]')->item(0);
+
+        if (!$image) {
+            $image = $xpath->query('//svg[@width="112"]')->item(0);
+        }
+
+        $this->assertNotNull($image);
+
+        return $image;
     }
 }
