@@ -19,7 +19,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 class GifOptimizerCommand extends Command
 {
     /**
-     * @var string The name of the command.
+     * @var string The name of the command
      */
     const COMMAND_NAME = 'jolicode:gifexception:optimize';
 
@@ -75,13 +75,13 @@ class GifOptimizerCommand extends Command
      */
     protected function initialize(InputInterface $input, OutputInterface $output)
     {
-        $ignoreErrors = (bool)$input->getOption('ignore_errors');
+        $ignoreErrors = (bool) $input->getOption('ignore_errors');
         $optimizationLevel = $input->getOption('optimization_level');
         $width = $input->getOption('resize_width');
 
         $options = array(
             'ignore_errors' => $ignoreErrors,
-            'gifsicle_options' => array('-b', $optimizationLevel, '--resize-width=' . $width)
+            'gifsicle_options' => array('-b', $optimizationLevel, '--resize-width=' . $width),
         );
 
         $factory = new OptimizerFactory($options);
@@ -124,17 +124,19 @@ class GifOptimizerCommand extends Command
     /**
      * @param $bytes
      * @param bool $useStandard
+     *
      * @return string
      */
     private function formatBytes($bytes, $useStandard = true)
     {
         $unit = $useStandard ? 1024 : 1000;
         if ($bytes <= $unit) {
-            return $bytes . " B";
+            return $bytes . ' B';
         }
         $exp = intval((log($bytes) / log($unit)));
-        $pre = ($useStandard ? "kMGTPE" : "KMGTPE");
-        $pre = $pre[$exp - 1] . ($useStandard ? "" : "i");
-        return sprintf("%.1f %sB", $bytes / pow($unit, $exp), $pre);
+        $pre = ($useStandard ? 'kMGTPE' : 'KMGTPE');
+        $pre = $pre[$exp - 1] . ($useStandard ? '' : 'i');
+
+        return sprintf('%.1f %sB', $bytes / pow($unit, $exp), $pre);
     }
 }

@@ -17,9 +17,9 @@ use Symfony\Component\Console\Input\ArgvInput;
 set_time_limit(0);
 
 /**
- * @var Composer\Autoload\ClassLoader $loader
+ * @var Composer\Autoload\ClassLoader
  */
-$loader = require __DIR__.'/../vendor/autoload.php';
+$loader = require __DIR__ . '/../vendor/autoload.php';
 
 $args = $_SERVER['argv'];
 

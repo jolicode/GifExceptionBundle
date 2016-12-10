@@ -17,7 +17,7 @@ use Symfony\Component\Console\Tester\CommandTester;
 abstract class WebTestCase extends BaseWebTestCase
 {
     /**
-     * @var Application An Application.
+     * @var Application An Application
      */
     protected $application;
 
@@ -32,11 +32,12 @@ abstract class WebTestCase extends BaseWebTestCase
     /**
      * Get the output for a Command.
      *
-     * @param Command $command The Command to run.
-     * @param string $commandName
-     * @param array $args
-     * @param array $options
-     * @return string The output.
+     * @param Command $command     The Command to run
+     * @param string  $commandName
+     * @param array   $args
+     * @param array   $options
+     *
+     * @return string The output
      */
     protected function getOutputForCommand($command, $commandName, array $args = array(), array $options = array())
     {

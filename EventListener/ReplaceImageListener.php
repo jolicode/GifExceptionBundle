@@ -24,10 +24,10 @@ class ReplaceImageListener
     /** @var string */
     private $exceptionController;
 
-    /** @var Packages **/
+    /** @var Packages */
     private $packages;
 
-    /** @var CoreAssetsHelper **/
+    /** @var CoreAssetsHelper */
     private $coreAssetsHelper;
 
     /**

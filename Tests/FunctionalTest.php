@@ -45,7 +45,7 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
 
         $image = $this->getImage($response->getContent());
 
-        self::assertTrue($image->hasAttribute('data-gif'), "Image was not replaced.");
+        self::assertTrue($image->hasAttribute('data-gif'), 'Image was not replaced.');
         self::assertStringMatchesFormat('%s/gifexception/images/404/%s.gif', $image->getAttribute('src'));
 
         $request = Request::create('/error-418');
