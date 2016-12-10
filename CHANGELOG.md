@@ -1,5 +1,9 @@
 # Changes between versions
 
+## 1.2.2 (2016-12-10)
+
+* Fixed compatibility with Symfony 3.2+
+
 ## 1.2.1 (2016-09-07)
 
 * Added a script to optimize GIFs
