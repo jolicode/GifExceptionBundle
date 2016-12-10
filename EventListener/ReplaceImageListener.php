@@ -75,9 +75,8 @@ class ReplaceImageListener
                 $content
             );
         } else {
-            $svg = file_get_contents();
             $content = preg_replace(
-                '/<svg.*svg>/mi',
+                '@<svg xmlns="http://www.w3.org/2000/svg" width="112"(.*?)</svg>@ims',
                 sprintf('<img alt="Exception detected!" src="%s" data-gif style="width:145px" />', $url),
                 $content
             );
