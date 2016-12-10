@@ -11,6 +11,7 @@ namespace Joli\GifExceptionBundle\EventListener;
 use Symfony\Component\Asset\Packages;
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
+use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Templating\Helper\CoreAssetsHelper;
 
 class ReplaceImageListener
@@ -23,10 +24,10 @@ class ReplaceImageListener
     /** @var string */
     private $exceptionController;
 
-    /** @var Packages **/
+    /** @var Packages */
     private $packages;
 
-    /** @var CoreAssetsHelper **/
+    /** @var CoreAssetsHelper */
     private $coreAssetsHelper;
 
     /**
@@ -67,11 +68,19 @@ class ReplaceImageListener
 
         $content = $event->getResponse()->getContent();
 
-        $content = preg_replace(
-            '/<img alt="Exception detected!" src=".*" \/>/',
-            sprintf('<img alt="Exception detected!" src="%s" data-gif style="width:145px" />', $url),
-            $content
-        );
+        if (version_compare(Kernel::VERSION, '3.2', '<')) {
+            $content = preg_replace(
+                '/<img alt="Exception detected!" src=".*" \/>/',
+                sprintf('<img alt="Exception detected!" src="%s" data-gif style="width:145px" />', $url),
+                $content
+            );
+        } else {
+            $content = preg_replace(
+                '@<svg xmlns="http://www.w3.org/2000/svg" width="112"(.*?)</svg>@ims',
+                sprintf('<img alt="Exception detected!" src="%s" data-gif style="width:145px" />', $url),
+                $content
+            );
+        }
 
         $event->getResponse()->setContent($content);
     }
