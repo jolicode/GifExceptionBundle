@@ -1,9 +1,12 @@
 <?php
 
 /*
- * This file is part of the GifExceptionBundle Project.
+ * This file is part of the GifExceptionBundle project.
  *
- * (c) Loïck Piera <pyrech@gmail.com>
+ * (c) JoliCode <coucou@jolicode.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace Joli\GifExceptionBundle\Command;
@@ -133,7 +136,7 @@ class GifOptimizerCommand extends Command
         if ($bytes <= $unit) {
             return $bytes . ' B';
         }
-        $exp = intval((log($bytes) / log($unit)));
+        $exp = (int) ((log($bytes) / log($unit)));
         $pre = ($useStandard ? 'kMGTPE' : 'KMGTPE');
         $pre = $pre[$exp - 1] . ($useStandard ? '' : 'i');
 

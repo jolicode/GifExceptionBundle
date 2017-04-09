@@ -1,5 +1,9 @@
 # Changes between versions
 
+## Not yet released
+
+* Updated PHP-CS-Fixer to version 2
+
 ## 1.2.2 (2016-12-10)
 
 * Fixed compatibility with Symfony 3.2+

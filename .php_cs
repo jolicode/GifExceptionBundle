@@ -1,36 +1,42 @@
 <?php
 
-$header = <<<EOF
-This file is part of the GifExceptionBundle Project.
+$header = <<<'EOF'
+This file is part of the GifExceptionBundle project.
 
-(c) Loïck Piera <pyrech@gmail.com>
+(c) JoliCode <coucou@jolicode.com>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
 EOF;
 
-Symfony\CS\Fixer\Contrib\HeaderCommentFixer::setHeader($header);
-
-$finder = Symfony\CS\Finder\DefaultFinder::create()
-    ->in(array(__DIR__))
-    ->exclude('app/cache')
-;
-
-return Symfony\CS\Config\Config::create()
-    // Set to Symfony Level (PSR1 PSR2)
-    ->level(Symfony\CS\FixerInterface::SYMFONY_LEVEL)
-    ->fixers(array(
-        'header_comment',           // Add the provided header comment ($header)
-        'newline_after_open_tag',   // Force new line after <?php
-        'ordered_use',              // Order "use" alphabetically
-        'long_array_syntax',        // Replace [] by array()
-        '-empty_return',            // Keep return null;
-        'phpdoc_order',             // Clean up the /** php doc */
-        'concat_with_spaces',       // Force space around concatenation operator
-
-        // Alignment war start here.
-        '-align_double_arrow',      // Force no double arrow align
-        'unalign_double_arrow',     // Keep double arrow simple
-        '-align_equals',            // Force no aligned equals
-        'unalign_equals',           // Keep equals simple
+return PhpCsFixer\Config::create()
+    ->setRiskyAllowed(true)
+    ->setRules(array(
+        '@Symfony' => true,
+        '@Symfony:risky' => true,
+        'header_comment' => array('header' => $header),
+        'array_syntax' => array('syntax' => 'long'),
+        'ordered_class_elements' => true,
+        'ordered_imports' => true,
+        'heredoc_to_nowdoc' => true,
+        'php_unit_strict' => true,
+        'php_unit_construct' => true,
+        'phpdoc_add_missing_param_annotation' => true,
+        'phpdoc_order' => true,
+        'strict_comparison' => true,
+        'strict_param' => true,
+        'no_extra_consecutive_blank_lines' => array('break', 'continue', 'extra', 'return', 'throw', 'use', 'parenthesis_brace_block', 'square_brace_block', 'curly_brace_block'),
+        'no_short_echo_tag' => true,
+        'no_unreachable_default_argument_value' => true,
+        'no_useless_else' => true,
+        'no_useless_return' => true,
+        'semicolon_after_instruction' => true,
+        'combine_consecutive_unsets' => true,
+        'concat_space' => array('spacing' => 'one'),
     ))
-    ->setUsingCache(true)
-    ->finder($finder)
+    ->setFinder(
+        PhpCsFixer\Finder::create()
+            ->in(__DIR__)
+            ->exclude('app/cache')
+    )
 ;
