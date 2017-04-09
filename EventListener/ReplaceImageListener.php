@@ -77,10 +77,16 @@ class ReplaceImageListener
                 sprintf('<img alt="Exception detected!" src="%s" data-gif style="width:145px" />', $url),
                 $content
             );
-        } else {
+        } elseif (version_compare(Kernel::VERSION, '3.3', '<')) {
             $content = preg_replace(
                 '@<svg xmlns="http://www.w3.org/2000/svg" width="112"(.*?)</svg>@ims',
                 sprintf('<img alt="Exception detected!" src="%s" data-gif style="width:145px" />', $url),
+                $content
+            );
+        } else {
+            $content = preg_replace(
+                '@<div class="exception-illustration hidden-xs-down">(.*?)</div>@ims',
+                sprintf('<div class="exception-illustration hidden-xs-down" style="opacity:1"><img alt="Exception detected!" src="%s" data-gif style="height:66px" /></div>', $url),
                 $content
             );
         }

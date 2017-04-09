@@ -4,6 +4,7 @@
 
 * Updated PHP-CS-Fixer to version 2
 * Dropped support for PHP 5.3
+* Fixed compatibility with Symfony 3.3+
 
 ## 1.2.2 (2016-12-10)
 
