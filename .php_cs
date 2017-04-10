@@ -15,7 +15,7 @@ return PhpCsFixer\Config::create()
         '@Symfony' => true,
         '@Symfony:risky' => true,
         'header_comment' => array('header' => $header),
-        'array_syntax' => array('syntax' => 'long'),
+        'array_syntax' => array('syntax' => 'short'),
         'ordered_class_elements' => true,
         'ordered_imports' => true,
         'heredoc_to_nowdoc' => true,
