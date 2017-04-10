@@ -8,6 +8,10 @@ Very important bundle to make Symfony Exception looks like /r/gifs.
 
 ![Demo](Resources/doc/images/demo.gif)
 
+It's compatible with Symfony versions from 2.3 to latest. Here is what it looks like with Symfony 3.3+:
+
+![Demo sf 3.3](Resources/doc/images/demo-sf-3-3.gif)
+
 *Be aware that we can not be held responsible for any loss of productivity during development.*
 
 ## Installation
