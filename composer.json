@@ -17,7 +17,7 @@
         "symfony/framework-bundle": "~2.3|~3.0"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "~2.2",
+        "friendsofphp/php-cs-fixer": "~2.0",
         "phpunit/phpunit": "~4.8|~5.0",
         "ps/image-optimizer": "^1.0.4",
         "symfony/config": "~2.3|~3.0",
