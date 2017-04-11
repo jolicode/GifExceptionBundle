@@ -4,7 +4,9 @@
 [![Total Downloads](https://poser.pugx.org/jolicode/gif-exception-bundle/downloads)](https://packagist.org/packages/jolicode/gif-exception-bundle)
 [![Build Status](https://travis-ci.org/jolicode/GifExceptionBundle.svg?branch=master)](https://travis-ci.org/jolicode/GifExceptionBundle)
 
-Very important bundle to make Symfony Exception looks like /r/gifs.
+The GhostBuster of your exception page!
+
+It displays a GIF instead of Symfony's ghost on exception page:
 
 ![Demo](Resources/doc/images/demo.gif)
 

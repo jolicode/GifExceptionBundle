@@ -1,7 +1,7 @@
 {
     "name": "jolicode/gif-exception-bundle",
     "type": "symfony-bundle",
-    "description": "Display random gif on exception page",
+    "description": "The GhostBuster of your exception page",
     "keywords": ["symfony", "exception", "random", "gif"],
     "license": "MIT",
     "autoload": {
