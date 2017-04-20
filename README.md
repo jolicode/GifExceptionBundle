@@ -51,6 +51,12 @@ composer require "jolicode/gif-exception-bundle"
 app/console assets:install
 ```
 
+or for Symfony 3+ :
+
+```shell
+bin/console assets:install
+```
+
 Now enjoy your exceptions \o/
 
 ## Add some more gifs!
