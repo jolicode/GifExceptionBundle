@@ -10,7 +10,7 @@ It displays a GIF instead of Symfony's ghost on exception page:
 
 ![Demo](Resources/doc/images/demo.gif)
 
-It's compatible with Symfony versions from 2.3 to latest. Here is what it looks like with Symfony 3.3+:
+It's compatible with Symfony versions from 2.7 to latest. Here is what it looks like with Symfony 3.3+:
 
 ![Demo sf 3.3](Resources/doc/images/demo-sf-3-3.gif)
 

@@ -13,7 +13,6 @@ namespace Joli\GifExceptionBundle\EventListener;
 
 use Symfony\Component\Asset\Packages;
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
-use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Templating\Helper\CoreAssetsHelper;
 
@@ -54,8 +53,7 @@ class ReplaceImageListener
      */
     public function onKernelResponse(FilterResponseEvent $event)
     {
-        // $event->isMasterRequest() method was added in Symfony 2.4
-        if (HttpKernelInterface::MASTER_REQUEST === $event->getRequestType()
+        if ($event->isMasterRequest()
             || $event->getRequest()->attributes->get('_controller') !== $this->exceptionController) {
             return;
         }
@@ -119,7 +117,7 @@ class ReplaceImageListener
      */
     private function getRandomGif($dir)
     {
-        $imageIndex = rand(0, count($this->gifs[$dir]) - 1);
+        $imageIndex = mt_rand(0, count($this->gifs[$dir]) - 1);
 
         return $this->gifs[$dir][$imageIndex];
     }
@@ -138,7 +136,7 @@ class ReplaceImageListener
     }
 
     /**
-     * Generate an url in both Symfony 2 and Symfony 3 compatible ways.
+     * Generate an url in both Symfony 2 and Symfony 3+ compatible ways.
      *
      * @param string $url
      *

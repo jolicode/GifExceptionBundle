@@ -1,5 +1,10 @@
 # Changes between versions
 
+## Not yet released
+
+* Added compatibility with Symfony 4.0
+* Dropped compatibility with PHP < 5.5.9 and Symfony < 2.7
+
 ## 1.3.0 (2017-04-10)
 
 * Updated PHP-CS-Fixer to version 2
