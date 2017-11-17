@@ -18,7 +18,6 @@
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "~2.0",
-        "phpunit/phpunit": "~4.8 || ~5.0",
         "ps/image-optimizer": "^1.0.4",
         "symfony/config": "^2.7 || ^3.0 || ^4.0",
         "symfony/dependency-injection": "^2.7 || ^3.0 || ^4.0",
@@ -26,7 +25,9 @@
         "symfony/twig-bundle": "^2.7 || ^3.0 || ^4.0",
         "symfony/asset": "^2.7 || ^3.0 || ^4.0",
         "symfony/templating": "^2.7 || ^3.0 || ^4.0",
-        "doctrine/annotations": "^1.2"
+        "symfony/yaml": "^2.7 || ^3.0 || ^4.0",
+        "doctrine/annotations": "^1.2",
+        "symfony/phpunit-bridge": "^3.3"
     },
     "extra": {
         "branch-alias": {
