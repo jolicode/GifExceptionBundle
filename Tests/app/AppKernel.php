@@ -22,12 +22,12 @@ class AppKernel extends Kernel
      */
     public function registerBundles()
     {
-        $bundles = array(
+        $bundles = [
             new \Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new \Symfony\Bundle\TwigBundle\TwigBundle(),
-        );
+        ];
 
-        if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {
+        if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
             $bundles[] = new \Joli\GifExceptionBundle\GifExceptionBundle();
         }
 
@@ -44,9 +44,9 @@ class AppKernel extends Kernel
         // graciously stolen from https://github.com/javiereguiluz/EasyAdminBundle/blob/master/Tests/Fixtures/App/AppKernel.php#L39-L45
         if (3 === static::MAJOR_VERSION) {
             $loader->load(function (ContainerBuilder $container) {
-                $container->loadFromExtension('framework', array(
+                $container->loadFromExtension('framework', [
                     'assets' => null,
-                ));
+                ]);
             });
         }
     }

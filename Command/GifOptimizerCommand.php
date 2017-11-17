@@ -82,10 +82,10 @@ class GifOptimizerCommand extends Command
         $optimizationLevel = $input->getOption('optimization_level');
         $width = $input->getOption('resize_width');
 
-        $options = array(
+        $options = [
             'ignore_errors' => $ignoreErrors,
-            'gifsicle_options' => array('-b', $optimizationLevel, '--resize-width=' . $width),
-        );
+            'gifsicle_options' => ['-b', $optimizationLevel, '--resize-width=' . $width],
+        ];
 
         $factory = new OptimizerFactory($options);
         $this->optimizer = $factory->get('gif');

@@ -73,11 +73,17 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
         @$dom->loadHTML($content); // svg throw a warning
         $xpath = new \DomXpath($dom);
 
-        // SF < 3.2
+        // SF < 3.2 and image replaced
         $image = $xpath->query('//img[@alt="Exception detected!"]')->item(0);
 
         if (!$image) {
+            // SF < 3.3
             $image = $xpath->query('//svg[@width="112"]')->item(0);
+        }
+
+        if (!$image) {
+            // SF >= 3.3
+            $image = $xpath->query('//div[contains(@class, "exception-illustration")]/svg')->item(0);
         }
 
         $this->assertNotNull($image);
