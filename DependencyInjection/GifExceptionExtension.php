@@ -67,17 +67,24 @@ class GifExceptionExtension extends Extension implements CompilerPassInterface
 
         $definition = $container->getDefinition('gif_exception.listener.replace_image');
 
-        $definition->addArgument($container->getParameter('twig.exception_listener.controller'));
+        // $container->setArgument($index, ...) was added in Symfony 3.3
+        $arguments = [
+            $definition->getArgument(0),
+            $container->getParameter('twig.exception_listener.controller'),
+        ];
 
         if ($container->has('assets.packages')) {
             // New Asset component to generate asset url (SF >=2.8)
-            $definition->addArgument(new Reference('assets.packages'));
-            $definition->addArgument(null);
+            $arguments[] = new Reference('assets.packages');
+            $arguments[] = null;
         } elseif ($container->has('templating.helper.assets')) {
             // Old way of generating asset url (SF ~2.3)
-            $definition->addArgument(null);
-            $definition->addArgument(new Reference('templating.helper.assets'));
+            // To remove when compatibility with Symfony 2.7 is dropped
+            $arguments[] = null;
+            $arguments[] = new Reference('templating.helper.assets');
             $definition->setScope('request');
         }
+
+        $definition->setArguments($arguments);
     }
 }

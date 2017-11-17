@@ -1,5 +1,9 @@
 # Changes between versions
 
+## Not yet released
+
+* Added hard dependency on TwigBundle
+
 ## 1.4.0 (2017-11-17)
 
 * Added compatibility with Symfony 4.0

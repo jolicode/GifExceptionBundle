@@ -14,7 +14,8 @@
     },
     "require": {
         "php": "^5.5.9 || ^7.0",
-        "symfony/framework-bundle": "^2.7 || ^3.0 || ^4.0"
+        "symfony/framework-bundle": "^2.7 || ^3.0 || ^4.0",
+        "symfony/twig-bundle": "^2.7 || ^3.0 || ^4.0"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "~2.0",
@@ -22,7 +23,6 @@
         "symfony/config": "^2.7 || ^3.0 || ^4.0",
         "symfony/dependency-injection": "^2.7 || ^3.0 || ^4.0",
         "symfony/http-kernel": "^2.7 || ^3.0 || ^4.0",
-        "symfony/twig-bundle": "^2.7 || ^3.0 || ^4.0",
         "symfony/asset": "^2.7 || ^3.0 || ^4.0",
         "symfony/templating": "^2.7 || ^3.0 || ^4.0",
         "symfony/yaml": "^2.7 || ^3.0 || ^4.0",
