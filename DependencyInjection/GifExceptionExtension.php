@@ -30,12 +30,12 @@ class GifExceptionExtension extends Extension implements CompilerPassInterface
         }
 
         $definition = new Definition('Joli\GifExceptionBundle\EventListener\ReplaceImageListener');
-        $definition->addTag('kernel.event_listener', array(
+        $definition->addTag('kernel.event_listener', [
             'event' => KernelEvents::RESPONSE,
             'priority' => -1000,
-        ));
+        ]);
 
-        $gifs = array();
+        $gifs = [];
 
         $pattern = __DIR__ . '/../Resources/public/images/*/*.gif';
         foreach (glob($pattern) as $path) {

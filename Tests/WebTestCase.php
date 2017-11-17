@@ -42,10 +42,10 @@ abstract class WebTestCase extends BaseWebTestCase
      *
      * @return string The output
      */
-    protected function getOutputForCommand($command, $commandName, array $args = array(), array $options = array())
+    protected function getOutputForCommand($command, $commandName, array $args = [], array $options = [])
     {
         if (empty($args)) {
-            $args = array('command' => $commandName);
+            $args = ['command' => $commandName];
         }
 
         $this->application->add($command);
@@ -60,7 +60,7 @@ abstract class WebTestCase extends BaseWebTestCase
     /**
      * {@inheritdoc}
      */
-    protected static function createKernel(array $options = array())
+    protected static function createKernel(array $options = [])
     {
         return new AppKernel(
             isset($options['environment']) ? $options['environment'] : 'test',
