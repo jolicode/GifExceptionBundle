@@ -1,6 +1,6 @@
 # Changes between versions
 
-## Not yet released
+## 1.4.0 (2017-11-17)
 
 * Added compatibility with Symfony 4.0
 * Dropped compatibility with PHP < 5.5.9 and Symfony < 2.7
