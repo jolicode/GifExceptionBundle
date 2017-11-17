@@ -18,7 +18,7 @@ matrix:
         - php: 7.0
           env: TARGET=cs_dry_run
         - php: 5.5
-          env: COMPOSER_FLAGS="--prefer-lowest"
+          env: COMPOSER_FLAGS="--prefer-lowest" SYMFONY_DEPRECATIONS_HELPER=weak
         # test 2.7 LTS
         - php: 5.6
           env: SYMFONY_VERSION=2.7.*
