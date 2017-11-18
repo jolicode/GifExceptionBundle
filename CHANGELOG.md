@@ -1,6 +1,6 @@
 # Changes between versions
 
-## Not yet released
+## 1.4.1 (2017-11-18)
 
 * Added hard dependency on TwigBundle
 
