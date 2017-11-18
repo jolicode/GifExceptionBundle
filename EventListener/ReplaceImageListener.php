@@ -149,6 +149,7 @@ class ReplaceImageListener
         }
 
         if ($this->coreAssetsHelper) {
+            // To remove when compatibility with Symfony 2.7 is dropped
             return $this->coreAssetsHelper->getUrl($url);
         }
 
