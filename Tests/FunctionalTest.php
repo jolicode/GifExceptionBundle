@@ -11,9 +11,10 @@
 
 namespace Joli\GifExceptionBundle\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 
-class FunctionalTest extends \PHPUnit_Framework_TestCase
+class FunctionalTest extends TestCase
 {
     /**
      * @test
