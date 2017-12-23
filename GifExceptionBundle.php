@@ -22,9 +22,4 @@ class GifExceptionBundle extends Bundle
 
         $container->addCompilerPass($this->getContainerExtension());
     }
-
-    public function getParent()
-    {
-        return 'TwigBundle';
-    }
 }
