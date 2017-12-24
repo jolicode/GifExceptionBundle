@@ -1,5 +1,10 @@
 # Changes between versions
 
+## 1.4.2 (2017-12-24) :santa:
+
+* Allow PHPUnit 6 by @carusogabriel
+* Remove deprecated `getParent` call on the Bundle class
+
 ## 1.4.1 (2017-11-18)
 
 * Added hard dependency on TwigBundle
