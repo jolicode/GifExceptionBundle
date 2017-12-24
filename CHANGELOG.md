@@ -2,8 +2,8 @@
 
 ## 1.4.2 (2017-12-24) :santa:
 
-* Allow PHPUnit 6 by @carusogabriel
-* Remove deprecated `getParent` call on the Bundle class
+* Fixed compatibility with PHPUnit 6
+* Removed deprecated `getParent` call on the Bundle class
 
 ## 1.4.1 (2017-11-18)
 
