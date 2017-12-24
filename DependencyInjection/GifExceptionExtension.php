@@ -11,6 +11,8 @@
 
 namespace Joli\GifExceptionBundle\DependencyInjection;
 
+use Joli\GifExceptionBundle\Command\GifOptimizerCommand;
+use Joli\GifExceptionBundle\EventListener\ReplaceImageListener;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
@@ -29,7 +31,13 @@ class GifExceptionExtension extends Extension implements CompilerPassInterface
             return;
         }
 
-        $definition = new Definition('Joli\GifExceptionBundle\EventListener\ReplaceImageListener');
+        $definition = new Definition(GifOptimizerCommand::class);
+        $definition->addTag('console.command', [
+            'command' => GifOptimizerCommand::COMMAND_NAME, // Allow lazy loading
+        ]);
+        $container->setDefinition(GifOptimizerCommand::class, $definition);
+
+        $definition = new Definition(ReplaceImageListener::class);
         $definition->addTag('kernel.event_listener', [
             'event' => KernelEvents::RESPONSE,
             'priority' => -1000,
