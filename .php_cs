@@ -21,6 +21,7 @@ return PhpCsFixer\Config::create()
         'heredoc_to_nowdoc' => true,
         'php_unit_strict' => true,
         'php_unit_construct' => true,
+        'php_unit_namespaced' => true,
         'phpdoc_add_missing_param_annotation' => true,
         'phpdoc_order' => true,
         'strict_comparison' => true,
