@@ -24,7 +24,7 @@ class FunctionalTest extends TestCase
         $kernel = new \Joli\GifExceptionBundle\Tests\app\AppKernel('prod', true);
         $kernel->boot();
 
-        $request = Request::create('/');
+        $request = Request::create('/error-404');
         $response = $kernel->handle($request);
 
         self::assertSame(404, $response->getStatusCode());
