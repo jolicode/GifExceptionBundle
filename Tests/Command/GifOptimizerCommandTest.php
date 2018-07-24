@@ -62,8 +62,8 @@ class GifOptimizerCommandTest extends WebTestCase
 
         list($optimizedWidth) = getimagesize($this->testGif);
 
-        self::assertEquals($expectedWidth, $optimizedWidth);
-        self::assertNotEquals($originalWidth, $optimizedWidth);
+        self::assertSame($expectedWidth, $optimizedWidth);
+        self::assertNotSame($originalWidth, $optimizedWidth);
     }
 
     public function testGifIsSmallerFileSize()
