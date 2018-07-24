@@ -48,6 +48,7 @@ class GifOptimizerCommand extends Command
     {
         $this
             ->setName(self::COMMAND_NAME)
+            ->setHidden(true)
             ->addArgument(
                 'image_dir',
                 InputArgument::OPTIONAL,
