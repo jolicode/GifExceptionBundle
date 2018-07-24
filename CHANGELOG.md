@@ -1,6 +1,6 @@
 # Changes between versions
 
-## Not yet released
+## 1.4.3 (2018-07-24)
 
 * Hid internal command
 
