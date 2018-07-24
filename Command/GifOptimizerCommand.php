@@ -48,7 +48,6 @@ class GifOptimizerCommand extends Command
     {
         $this
             ->setName(self::COMMAND_NAME)
-            ->setHidden(true)
             ->addArgument(
                 'image_dir',
                 InputArgument::OPTIONAL,
@@ -72,6 +71,10 @@ class GifOptimizerCommand extends Command
             ->addOption('ignore_errors', null, InputOption::VALUE_NONE, 'Would you like to ignore errors?')
             ->setDescription('Optimize gifs')
         ;
+
+        if (method_exists($this, 'setHidden')) {
+            $this->setHidden(true);
+        }
     }
 
     /**
