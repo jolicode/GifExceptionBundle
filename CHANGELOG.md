@@ -1,5 +1,9 @@
 # Changes between versions
 
+## Not yet released
+
+* Hid internal command
+
 ## 1.4.2 (2017-12-24) :santa:
 
 * Fixed compatibility with PHPUnit 6
