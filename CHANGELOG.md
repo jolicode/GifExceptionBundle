@@ -1,5 +1,10 @@
 # Changes between versions
 
+## 1.5.0 (2019-03-20)
+
+* Added more GIFs
+* Fix the tests (compatibility with PHPUnit 6)
+
 ## 1.4.3 (2018-07-24)
 
 * Hid internal command

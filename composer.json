@@ -27,7 +27,7 @@
         "symfony/templating": "^2.7 || ^3.0 || ^4.0",
         "symfony/yaml": "^2.7 || ^3.0 || ^4.0",
         "doctrine/annotations": "^1.2",
-        "symfony/phpunit-bridge": "^3.3"
+        "symfony/phpunit-bridge": "^3.4.23"
     },
     "extra": {
         "branch-alias": {
