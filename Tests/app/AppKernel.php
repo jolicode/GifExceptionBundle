@@ -27,7 +27,7 @@ class AppKernel extends Kernel
             new \Symfony\Bundle\TwigBundle\TwigBundle(),
         ];
 
-        if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
+        if (\in_array($this->getEnvironment(), ['dev', 'test'], true)) {
             $bundles[] = new \Joli\GifExceptionBundle\GifExceptionBundle();
         }
 
@@ -39,7 +39,7 @@ class AppKernel extends Kernel
      */
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
-        $loader->load(__DIR__.'/config/config.yml');
+        $loader->load(__DIR__ . '/config/config.yml');
 
         // graciously stolen from https://github.com/javiereguiluz/EasyAdminBundle/blob/master/Tests/Fixtures/App/AppKernel.php#L39-L45
         if (3 === static::MAJOR_VERSION) {

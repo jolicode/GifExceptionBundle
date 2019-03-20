@@ -47,7 +47,7 @@ class GifExceptionExtension extends Extension implements CompilerPassInterface
 
         $pattern = __DIR__ . '/../Resources/public/images/*/*.gif';
         foreach (glob($pattern) as $path) {
-            $gifs[basename(dirname($path))][] = basename($path);
+            $gifs[basename(\dirname($path))][] = basename($path);
         }
 
         $pattern = __DIR__ . '/../Resources/public/images/other/*.gif';

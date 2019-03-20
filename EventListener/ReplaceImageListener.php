@@ -101,7 +101,7 @@ class ReplaceImageListener
      */
     private function getGifDir($statusCode)
     {
-        if (array_key_exists($statusCode, $this->gifs) && count($this->gifs[$statusCode]) > 0) {
+        if (\array_key_exists($statusCode, $this->gifs) && \count($this->gifs[$statusCode]) > 0) {
             return $statusCode;
         }
 
@@ -117,7 +117,7 @@ class ReplaceImageListener
      */
     private function getRandomGif($dir)
     {
-        $imageIndex = mt_rand(0, count($this->gifs[$dir]) - 1);
+        $imageIndex = mt_rand(0, \count($this->gifs[$dir]) - 1);
 
         return $this->gifs[$dir][$imageIndex];
     }
