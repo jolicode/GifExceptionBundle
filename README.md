@@ -6,55 +6,18 @@
 
 The GhostBuster of your exception page!
 
-It displays a GIF instead of Symfony's ghost on exception page:
+It displays a GIF instead of Symfony's ghost on exception page and it's compatible with Symfony versions from 4.4 to latest. Here is what it looks like :
 
-![Demo](Resources/doc/images/demo.gif)
-
-It's compatible with Symfony versions from 2.7 to latest. Here is what it looks like with Symfony 3.3+:
-
-![Demo sf 3.3](Resources/doc/images/demo-sf-3-3.gif)
+![Demo sf 3.3](Resources/doc/images/demo.gif)
 
 *Be aware that we can not be held responsible for any loss of productivity during development.*
 
 ## Installation
 
-- Use [Composer](http://getcomposer.org/) to install `GifExceptionBundle` in your project:
+- Use [Composer](http://getcomposer.org/) with [Symfony Flex](https://github.com/symfony/flex) to install `GifExceptionBundle` in your project:
 
 ```shell
-composer require "jolicode/gif-exception-bundle"
-```
-
-- Enable the bundle in **dev** environment:
-
-```php
-    /**
-     * {@inheritdoc}
-     */
-    public function registerBundles()
-    {
-        $bundles = [
-            // ...
-        ];
-
-        if (in_array($this->getEnvironment(), array('dev', 'test'))) {
-            // ...
-            $bundles[] = new \Joli\GifExceptionBundle\GifExceptionBundle();
-        }
-
-        return $bundles;
-    }
-```
-
-- Then install the assets to make gifs accessible to public:
-
-```shell
-app/console assets:install
-```
-
-or for Symfony 3+ :
-
-```shell
-bin/console assets:install
+composer require jolicode/gif-exception-bundle --dev
 ```
 
 Now enjoy your exceptions \o/

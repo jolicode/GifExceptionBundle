@@ -9,11 +9,7 @@
  * file that was distributed with this source code.
  */
 
-// Ref: https://github.com/symfony/symfony/issues/21534#issuecomment-278278352
-if (!class_exists('\PHPUnit\Framework\TestCase', true)) {
-    class_alias('\PHPUnit_Framework_TestCase', '\PHPUnit\Framework\TestCase');
-} elseif (!class_exists('\PHPUnit_Framework_TestCase', true)) {
-    class_alias('\PHPUnit\Framework\TestCase', '\PHPUnit_Framework_TestCase');
-}
+$loader = require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/app/AppKernel.php';
 
-require_once __DIR__ . '/../vendor/autoload.php';
+return $loader;
