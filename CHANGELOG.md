@@ -1,6 +1,6 @@
 # Changes between versions
 
-## 1.6.0 (not release yet)
+## 1.6.0 (2020-03-02)
 
 * Added compatibility with Symfony 5.0
 * Dropped compatibility with PHP < 7.1 and Symfony < 4.4
