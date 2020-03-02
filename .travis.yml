@@ -1,10 +1,8 @@
 language: php
 
 php:
-    - 5.5
-    - 5.6
-    - 7.0
     - 7.1
+    - 7.2
     - 7.3
 
 env:
@@ -15,21 +13,18 @@ env:
 matrix:
     fast_finish: true
     include:
-        - php: 7.0
+        - php: 7.4
           env: TARGET=cs_dry_run
-        - php: 5.5
-          env: COMPOSER_FLAGS="--prefer-lowest" SYMFONY_DEPRECATIONS_HELPER=weak
-        # test 2.7 LTS
-        - php: 5.6
-          env: SYMFONY_VERSION=2.7.*
-        # test 2.8 LTS
-        - php: 5.6
-          env: SYMFONY_VERSION=2.8.*
-        # test the latest stable 3.x release
-        - php: 5.6
-          env: SYMFONY_VERSION=^3.0
+        - php: 7.1
+          env: COMPOSER_FLAGS="--prefer-stable --prefer-lowest"
+        # test 4.4
+        - php: 7.4
+          env: SYMFONY_VERSION=4.4.*
+        # test the latest stable 5.x release
+        - php: 7.4
+          env: SYMFONY_VERSION=^5.0
         # test the latest release (including beta releases)
-        - php: 7.3
+        - php: 7.4
           env: DEPENDENCIES=beta
 
 sudo: false
@@ -41,7 +36,7 @@ cache:
 before_install:
     - if [ "$DEPENDENCIES" = "beta" ]; then perl -pi -e 's/^}$/,"minimum-stability":"beta"}/' composer.json; fi;
     - if [ "$SYMFONY_VERSION" != "" ]; then composer require "symfony/symfony:${SYMFONY_VERSION}" --no-update; fi;
-    - if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then echo "memory_limit=2G" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini; fi;
+    - echo "memory_limit=-1" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini;
 
 install: composer update --prefer-dist --no-interaction $COMPOSER_FLAGS
 

@@ -12,13 +12,13 @@
 namespace Joli\GifExceptionBundle\EventListener;
 
 use Symfony\Component\Asset\Packages;
-use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
-use Symfony\Component\HttpKernel\Kernel;
-use Symfony\Component\Templating\Helper\CoreAssetsHelper;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\HttpKernel\Event\ResponseEvent;
+use Symfony\Component\HttpKernel\KernelEvents;
 
-class ReplaceImageListener
+class ReplaceImageListener implements EventSubscriberInterface
 {
-    const IMAGES_DIR = '../../Resources/public/images';
+    private const IMAGES_DIR = '../../Resources/public/images';
 
     /** @var string[][] */
     private $gifs;
@@ -29,29 +29,20 @@ class ReplaceImageListener
     /** @var Packages */
     private $packages;
 
-    /** @var CoreAssetsHelper */
-    private $coreAssetsHelper;
-
     /**
-     * @param string[][]       $gifs
-     * @param string           $exceptionController
-     * @param Packages         $packages
-     * @param CoreAssetsHelper $coreAssetsHelper
+     * @param string[][] $gifs
      */
-    public function __construct(array $gifs, $exceptionController, Packages $packages = null, CoreAssetsHelper $coreAssetsHelper = null)
+    public function __construct(array $gifs, string $exceptionController, Packages $packages = null)
     {
         $this->gifs = $gifs;
         $this->exceptionController = $exceptionController;
         $this->packages = $packages;
-        $this->coreAssetsHelper = $coreAssetsHelper;
     }
 
     /**
      * Handle the response for exception and replace the little Phantom by a random Gif.
-     *
-     * @param FilterResponseEvent $event
      */
-    public function onKernelResponse(FilterResponseEvent $event)
+    public function onKernelResponse(ResponseEvent $event)
     {
         if ($event->isMasterRequest()
             || $event->getRequest()->attributes->get('_controller') !== $this->exceptionController) {
@@ -69,37 +60,29 @@ class ReplaceImageListener
 
         $content = $event->getResponse()->getContent();
 
-        if (version_compare(Kernel::VERSION, '3.2', '<')) {
-            $content = preg_replace(
-                '/<img alt="Exception detected!" src=".*" \/>/',
-                sprintf('<img alt="Exception detected!" src="%s" data-gif style="width:145px" />', $url),
-                $content
-            );
-        } elseif (version_compare(Kernel::VERSION, '3.3', '<')) {
-            $content = preg_replace(
-                '@<svg xmlns="http://www.w3.org/2000/svg" width="112"(.*?)</svg>@ims',
-                sprintf('<img alt="Exception detected!" src="%s" data-gif style="width:145px" />', $url),
-                $content
-            );
-        } else {
-            $content = preg_replace(
-                '@<div class="exception-illustration hidden-xs-down">(.*?)</div>@ims',
-                sprintf('<div class="exception-illustration hidden-xs-down" style="opacity:1"><img alt="Exception detected!" src="%s" data-gif style="height:66px" /></div>', $url),
-                $content
-            );
-        }
+        $content = preg_replace(
+            '@<div class="exception-illustration hidden-xs-down">(.*?)</div>@ims',
+            sprintf('<div class="exception-illustration hidden-xs-down" style="opacity:1"><img alt="Exception detected!" src="%s" data-gif style="height:66px" /></div>', $url),
+            $content
+        );
 
         $event->getResponse()->setContent($content);
     }
 
     /**
-     * Return the gif folder for the given status code.
-     *
-     * @param int $statusCode
-     *
-     * @return string
+     * {@inheritdoc}
      */
-    private function getGifDir($statusCode)
+    public static function getSubscribedEvents()
+    {
+        return [
+            KernelEvents::RESPONSE => ['onKernelResponse', -1000],
+        ];
+    }
+
+    /**
+     * Return the gif folder for the given status code.
+     */
+    private function getGifDir(int $statusCode): string
     {
         if (\array_key_exists($statusCode, $this->gifs) && \count($this->gifs[$statusCode]) > 0) {
             return $statusCode;
@@ -110,47 +93,29 @@ class ReplaceImageListener
 
     /**
      * Return a random gif name for the given directory.
-     *
-     * @param string $dir
-     *
-     * @return string
      */
-    private function getRandomGif($dir)
+    private function getRandomGif(string $dir): string
     {
-        $imageIndex = mt_rand(0, \count($this->gifs[$dir]) - 1);
+        $imageIndex = random_int(0, \count($this->gifs[$dir]) - 1);
 
         return $this->gifs[$dir][$imageIndex];
     }
 
     /**
      * Return a the url of given gif in the given directory.
-     *
-     * @param string $dir
-     * @param string $gif
-     *
-     * @return string
      */
-    private function getGifUrl($dir, $gif)
+    private function getGifUrl(string $dir, string $gif): string
     {
         return $this->generateUrl(sprintf('bundles/gifexception/images/%s/%s', $dir, $gif));
     }
 
     /**
      * Generate an url in both Symfony 2 and Symfony 3+ compatible ways.
-     *
-     * @param string $url
-     *
-     * @return string
      */
-    private function generateUrl($url)
+    private function generateUrl(string $url): string
     {
-        if ($this->packages) {
+        if (null !== $this->packages) {
             return $this->packages->getUrl($url);
-        }
-
-        if ($this->coreAssetsHelper) {
-            // To remove when compatibility with Symfony 2.7 is dropped
-            return $this->coreAssetsHelper->getUrl($url);
         }
 
         return $url;

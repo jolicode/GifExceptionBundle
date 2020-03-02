@@ -12,15 +12,14 @@
 namespace Joli\GifExceptionBundle\Tests\Command;
 
 use ImageOptimizer\Exception\CommandNotFound;
-use Joli\GifExceptionBundle\Command\GifOptimizerCommand;
-use Joli\GifExceptionBundle\Tests\WebTestCase;
+use Joli\GifExceptionBundle\Tests\KernelTestCase;
 
-class GifOptimizerCommandTest extends WebTestCase
+class GifOptimizerCommandTest extends KernelTestCase
 {
     private $prototypeGif;
     private $testGif;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -28,7 +27,7 @@ class GifOptimizerCommandTest extends WebTestCase
         $this->testGif = __DIR__ . '/gifs/test.gif';
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         parent::tearDown();
         copy($this->prototypeGif, $this->testGif);
@@ -37,10 +36,9 @@ class GifOptimizerCommandTest extends WebTestCase
     /**
      * @expectedException \RuntimeException
      */
-    public function testExceptionRaisedForInvalidImageDir()
+    public function testExceptionRaisedForInvalidImageDir(): void
     {
-        $command = new GifOptimizerCommand();
-        $this->getOutputForCommand($command, GifOptimizerCommand::COMMAND_NAME, ['image_dir' => 'foobar']);
+        $this->getOutputForCommand('jolicode:gifexception:optimize', ['image_dir' => 'foobar']);
     }
 
     public function testGifIsResizedToExpectedWidth()
@@ -48,12 +46,11 @@ class GifOptimizerCommandTest extends WebTestCase
         list($originalWidth) = getimagesize($this->testGif);
 
         $expectedWidth = 145;
-        $command = new GifOptimizerCommand();
         $args = ['image_dir' => __DIR__];
-        $options = ['resize_width' => $expectedWidth];
+        $options = ['--resize_width' => $expectedWidth];
 
         try {
-            $this->getOutputForCommand($command, GifOptimizerCommand::COMMAND_NAME, $args, $options);
+            $this->getOutputForCommand('jolicode:gifexception:optimize', $args, $options);
         } catch (CommandNotFound $e) {
             $this->markTestSkipped(sprintf('Gif optimizer tool is not executable'));
         }
@@ -70,11 +67,10 @@ class GifOptimizerCommandTest extends WebTestCase
     {
         $originalSize = filesize($this->testGif);
 
-        $command = new GifOptimizerCommand();
         $args = ['image_dir' => __DIR__];
 
         try {
-            $this->getOutputForCommand($command, GifOptimizerCommand::COMMAND_NAME, $args);
+            $this->getOutputForCommand('jolicode:gifexception:optimize', $args);
         } catch (CommandNotFound $e) {
             $this->markTestSkipped(sprintf('Gif optimizer tool is not executable'));
         }

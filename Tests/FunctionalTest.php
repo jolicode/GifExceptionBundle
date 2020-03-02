@@ -11,21 +11,17 @@
 
 namespace Joli\GifExceptionBundle\Tests;
 
-use PHPUnit\Framework\TestCase;
-use Symfony\Component\HttpFoundation\Request;
+use Joli\GifExceptionBundle\Tests\app\AppKernel;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class FunctionalTest extends TestCase
+class FunctionalTest extends WebTestCase
 {
-    /**
-     * @test
-     */
-    public function it_does_not_display_gif_on_exception_page_if_the_bundle_is_not_enabled()
+    public function test_it_does_not_display_gif_on_exception_page_if_the_bundle_is_not_enabled()
     {
-        $kernel = new \Joli\GifExceptionBundle\Tests\app\AppKernel('prod', true);
-        $kernel->boot();
+        $client = static::createClient(['environment' => 'prod', 'debug' => true]);
 
-        $request = Request::create('/error-404');
-        $response = $kernel->handle($request);
+        $crawler = $client->request('GET', '/error-404');
+        $response = $client->getResponse();
 
         self::assertSame(404, $response->getStatusCode());
 
@@ -34,16 +30,12 @@ class FunctionalTest extends TestCase
         self::assertFalse($image->hasAttribute('data-gif'));
     }
 
-    /**
-     * @test
-     */
-    public function it_displays_gif_on_exception_page_if_the_bundle_is_enabled()
+    public function test_it_displays_gif_on_exception_page_if_the_bundle_is_enabled()
     {
-        $kernel = new \Joli\GifExceptionBundle\Tests\app\AppKernel('dev', true);
-        $kernel->boot();
+        $client = static::createClient(['environment' => 'dev', 'debug' => true]);
 
-        $request = Request::create('/error-404');
-        $response = $kernel->handle($request);
+        $crawler = $client->request('GET', '/error-404');
+        $response = $client->getResponse();
 
         self::assertSame(404, $response->getStatusCode());
 
@@ -52,8 +44,8 @@ class FunctionalTest extends TestCase
         self::assertTrue($image->hasAttribute('data-gif'), 'Image was not replaced.');
         self::assertStringMatchesFormat('%s/gifexception/images/404/%s.gif', $image->getAttribute('src'));
 
-        $request = Request::create('/error-418');
-        $response = $kernel->handle($request);
+        $crawler = $client->request('GET', '/error-418');
+        $response = $client->getResponse();
 
         self::assertSame(418, $response->getStatusCode());
 
@@ -61,6 +53,17 @@ class FunctionalTest extends TestCase
 
         self::assertTrue($image->hasAttribute('data-gif'));
         self::assertStringMatchesFormat('%s/gifexception/images/other/%s.gif', $image->getAttribute('src'));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected static function createKernel(array $options = [])
+    {
+        return new AppKernel(
+            $options['environment'] ?? 'test',
+            $options['debug'] ?? true
+        );
     }
 
     /**

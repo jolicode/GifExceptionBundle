@@ -11,6 +11,9 @@
 
 namespace Joli\GifExceptionBundle\Tests\app;
 
+use Joli\GifExceptionBundle\GifExceptionBundle;
+use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
+use Symfony\Bundle\TwigBundle\TwigBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel;
@@ -23,31 +26,50 @@ class AppKernel extends Kernel
     public function registerBundles()
     {
         $bundles = [
-            new \Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
-            new \Symfony\Bundle\TwigBundle\TwigBundle(),
+            new FrameworkBundle(),
+            new TwigBundle(),
         ];
 
         if (\in_array($this->getEnvironment(), ['dev', 'test'], true)) {
-            $bundles[] = new \Joli\GifExceptionBundle\GifExceptionBundle();
+            $bundles[] = new GifExceptionBundle();
         }
 
         return $bundles;
     }
 
+    public function getRootDir()
+    {
+        return __DIR__;
+    }
+
     /**
      * {@inheritdoc}
+     */
+    public function getCacheDir()
+    {
+        return sys_get_temp_dir() . '/GiftExceptionBundle/cache';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getLogDir()
+    {
+        return sys_get_temp_dir() . '/GiftExceptionBundle/logs';
+    }
+
+    /**
+     * Loads the container configuration.
      */
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
         $loader->load(__DIR__ . '/config/config.yml');
+    }
 
-        // graciously stolen from https://github.com/javiereguiluz/EasyAdminBundle/blob/master/Tests/Fixtures/App/AppKernel.php#L39-L45
-        if (3 === static::MAJOR_VERSION) {
-            $loader->load(function (ContainerBuilder $container) {
-                $container->loadFromExtension('framework', [
-                    'assets' => null,
-                ]);
-            });
+    protected function build(ContainerBuilder $container)
+    {
+        if (!$container->hasParameter('kernel.root_dir')) {
+            $container->setParameter('kernel.root_dir', $this->getRootDir());
         }
     }
 }

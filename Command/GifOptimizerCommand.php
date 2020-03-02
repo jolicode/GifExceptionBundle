@@ -24,17 +24,17 @@ class GifOptimizerCommand extends Command
     /**
      * @var string The name of the command
      */
-    const COMMAND_NAME = 'jolicode:gifexception:optimize';
+    private const COMMAND_NAME = 'jolicode:gifexception:optimize';
 
     /**
      * @var string
      */
-    const DEFAULT_OPTIMIZATION_LEVEL = '-O3';
+    private const DEFAULT_OPTIMIZATION_LEVEL = '-O3';
 
     /**
      * @var int
      */
-    const DEFAULT_WIDTH = 145;
+    private const DEFAULT_WIDTH = 145;
 
     /**
      * @var Optimizer
@@ -98,7 +98,7 @@ class GifOptimizerCommand extends Command
     /**
      * {@inheritdoc}
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $imageDir = $input->getArgument('image_dir');
 
@@ -126,15 +126,11 @@ class GifOptimizerCommand extends Command
             $percentage = 100 - (($optimizedFileSize / $originalFileSize) * 100);
             $output->writeln(sprintf('<comment>Saving: %s%%</comment>', round($percentage)));
         }
+
+        return 0;
     }
 
-    /**
-     * @param $bytes
-     * @param bool $useStandard
-     *
-     * @return string
-     */
-    private function formatBytes($bytes, $useStandard = true)
+    private function formatBytes(int $bytes, bool $useStandard = true): string
     {
         $unit = $useStandard ? 1024 : 1000;
         if ($bytes <= $unit) {
@@ -144,6 +140,6 @@ class GifOptimizerCommand extends Command
         $pre = ($useStandard ? 'kMGTPE' : 'KMGTPE');
         $pre = $pre[$exp - 1] . ($useStandard ? '' : 'i');
 
-        return sprintf('%.1f %sB', $bytes / pow($unit, $exp), $pre);
+        return sprintf('%.1f %sB', $bytes / ($unit ** $exp), $pre);
     }
 }

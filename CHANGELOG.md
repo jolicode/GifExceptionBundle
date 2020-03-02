@@ -1,5 +1,10 @@
 # Changes between versions
 
+## 1.6.0 (not release yet)
+
+* Added compatibility with Symfony 5.0
+* Dropped compatibility with PHP < 7.1 and Symfony < 4.4
+
 ## 1.5.0 (2019-03-20)
 
 * Added more GIFs

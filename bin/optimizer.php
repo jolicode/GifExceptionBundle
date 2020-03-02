@@ -27,7 +27,7 @@ $args = $_SERVER['argv'];
 array_shift($args);
 
 // Prepend command name
-array_unshift($args, \Joli\GifExceptionBundle\Command\GifOptimizerCommand::COMMAND_NAME);
+array_unshift($args, 'jolicode:gifexception:optimize');
 
 // Prepend application name (ArgvInput strips it again so needs to be here)
 array_unshift($args, __DIR__ . '/optimizer.php');
