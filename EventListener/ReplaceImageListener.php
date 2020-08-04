@@ -18,8 +18,6 @@ use Symfony\Component\HttpKernel\KernelEvents;
 
 class ReplaceImageListener implements EventSubscriberInterface
 {
-    private const IMAGES_DIR = '../../Resources/public/images';
-
     /** @var string[][] */
     private $gifs;
 
@@ -49,10 +47,16 @@ class ReplaceImageListener implements EventSubscriberInterface
             return;
         }
 
+        $exception = $event->getRequest()->attributes->get('exception');
         // Status code is not set by the exception controller but only by the
         // kernel at the very end.
         // So lets use the status code from the flatten exception instead.
-        $statusCode = $event->getRequest()->attributes->get('exception')->getStatusCode();
+        // Unless it comes from a fatal error handler
+        if ($exception instanceof \Error) {
+            $statusCode = $exception->getCode();
+        } else {
+            $statusCode = $exception->getStatusCode();
+        }
 
         $dir = $this->getGifDir($statusCode);
         $gif = $this->getRandomGif($dir);
