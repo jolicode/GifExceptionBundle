@@ -1,5 +1,9 @@
 # Changes between versions
 
+## 1.6.1 (2020-03-02)
+
+* Fix Fatal Error support #40
+
 ## 1.6.0 (2020-03-02)
 
 * Added compatibility with Symfony 5.0
