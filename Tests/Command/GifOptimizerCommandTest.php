@@ -19,7 +19,7 @@ class GifOptimizerCommandTest extends KernelTestCase
     private $prototypeGif;
     private $testGif;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -27,7 +27,7 @@ class GifOptimizerCommandTest extends KernelTestCase
         $this->testGif = __DIR__ . '/gifs/test.gif';
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         parent::tearDown();
         copy($this->prototypeGif, $this->testGif);
@@ -52,7 +52,7 @@ class GifOptimizerCommandTest extends KernelTestCase
         try {
             $this->getOutputForCommand('jolicode:gifexception:optimize', $args, $options);
         } catch (CommandNotFound $e) {
-            $this->markTestSkipped(sprintf('Gif optimizer tool is not executable'));
+            $this->markTestSkipped('Gif optimizer tool is not executable');
         }
 
         clearstatcache(true, $this->testGif);
@@ -72,7 +72,7 @@ class GifOptimizerCommandTest extends KernelTestCase
         try {
             $this->getOutputForCommand('jolicode:gifexception:optimize', $args);
         } catch (CommandNotFound $e) {
-            $this->markTestSkipped(sprintf('Gif optimizer tool is not executable'));
+            $this->markTestSkipped('Gif optimizer tool is not executable');
         }
 
         clearstatcache(true, $this->testGif);

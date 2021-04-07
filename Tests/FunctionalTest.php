@@ -16,7 +16,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class FunctionalTest extends WebTestCase
 {
-    public function test_it_does_not_display_gif_on_exception_page_if_the_bundle_is_not_enabled()
+    public function testItDoesNotDisplayGifOnExceptionPageIfTheBundleIsNotEnabled()
     {
         $client = static::createClient(['environment' => 'prod', 'debug' => true]);
 
@@ -30,7 +30,7 @@ class FunctionalTest extends WebTestCase
         self::assertFalse($image->hasAttribute('data-gif'));
     }
 
-    public function test_it_displays_gif_on_exception_page_if_the_bundle_is_enabled()
+    public function testItDisplaysGifOnExceptionPageIfTheBundleIsEnabled()
     {
         $client = static::createClient(['environment' => 'dev', 'debug' => true]);
 

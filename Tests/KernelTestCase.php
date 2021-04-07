@@ -23,7 +23,7 @@ abstract class KernelTestCase extends BaseKernelTestCase
      */
     protected $tester;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         self::bootKernel();
 
