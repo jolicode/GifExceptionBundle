@@ -1,5 +1,9 @@
 # Changes between versions
 
+## 1.6.2 (2021-04-07)
+
+* Added compatibility with PHP 8
+
 ## 1.6.1 (2020-03-02)
 
 * Fix Fatal Error support #40
