@@ -1,5 +1,9 @@
 # Changes between versions
 
+## Not yet released
+
+* Fixed deprecation notice from Symfony 5.3
+
 ## 1.6.2 (2021-04-07)
 
 * Added compatibility with PHP 8
