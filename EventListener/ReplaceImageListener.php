@@ -42,9 +42,17 @@ class ReplaceImageListener implements EventSubscriberInterface
      */
     public function onKernelResponse(ResponseEvent $event)
     {
-        if ($event->isMasterRequest()
-            || $event->getRequest()->attributes->get('_controller') !== $this->exceptionController) {
-            return;
+        // Symfony > 5.3
+        if (method_exists($event, 'isMainRequest')) {
+            if ($event->isMainRequest()
+                || $event->getRequest()->attributes->get('_controller') !== $this->exceptionController) {
+                return;
+            }
+        } else {
+            if ($event->isMasterRequest()
+                || $event->getRequest()->attributes->get('_controller') !== $this->exceptionController) {
+                return;
+            }
         }
 
         $exception = $event->getRequest()->attributes->get('exception');
