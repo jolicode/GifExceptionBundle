@@ -1,6 +1,6 @@
 # Changes between versions
 
-## Not yet released
+## 1.6.3 (2021-06-14)
 
 * Fixed deprecation notice from Symfony 5.3
 
