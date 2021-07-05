@@ -19,7 +19,7 @@
     },
     "require-dev": {
         "doctrine/annotations": "^1.2",
-        "friendsofphp/php-cs-fixer": "~2.0",
+        "friendsofphp/php-cs-fixer": "^3.0",
         "ps/image-optimizer": "^1.0.4 || ^2.0",
         "symfony/asset": "^4.4 || ^5.0",
         "symfony/browser-kit": "^4.4 || ^5.0",
