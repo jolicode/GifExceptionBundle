@@ -1,5 +1,9 @@
 # Changes between versions
 
+## 1.6.4 (2021-06-14)
+
+* Fix undefined method call exception
+
 ## 1.6.3 (2021-06-14)
 
 * Fixed deprecation notice from Symfony 5.3
