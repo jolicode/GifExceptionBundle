@@ -2,6 +2,7 @@
 /composer.lock
 /vendor
 .php_cs.cache
+.php-cs-fixer.cache
 
 # Temporary
 /Tests/app/cache
