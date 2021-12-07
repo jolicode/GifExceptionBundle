@@ -3,6 +3,7 @@
 ## 1.7.0 (not released yet)
 
 * Drop support for PHP < 7.4
+* Add support for PHP 8.1
 
 ## 1.6.4 (2021-06-14)
 
