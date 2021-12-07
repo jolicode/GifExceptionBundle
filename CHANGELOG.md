@@ -1,5 +1,9 @@
 # Changes between versions
 
+## 1.7.0 (not released yet)
+
+* Drop support for PHP < 7.4
+
 ## 1.6.4 (2021-06-14)
 
 * Fix undefined method call exception
