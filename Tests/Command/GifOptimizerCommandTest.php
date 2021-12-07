@@ -43,7 +43,7 @@ class GifOptimizerCommandTest extends KernelTestCase
 
     public function testGifIsResizedToExpectedWidth()
     {
-        list($originalWidth) = getimagesize($this->testGif);
+        [$originalWidth] = getimagesize($this->testGif);
 
         $expectedWidth = 145;
         $args = ['image_dir' => __DIR__];
@@ -57,7 +57,7 @@ class GifOptimizerCommandTest extends KernelTestCase
 
         clearstatcache(true, $this->testGif);
 
-        list($optimizedWidth) = getimagesize($this->testGif);
+        [$optimizedWidth] = getimagesize($this->testGif);
 
         self::assertSame($expectedWidth, $optimizedWidth);
         self::assertNotSame($originalWidth, $optimizedWidth);
