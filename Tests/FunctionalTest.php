@@ -13,6 +13,7 @@ namespace Joli\GifExceptionBundle\Tests;
 
 use Joli\GifExceptionBundle\Tests\app\AppKernel;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\HttpKernel\KernelInterface;
 
 class FunctionalTest extends WebTestCase
 {
@@ -58,7 +59,7 @@ class FunctionalTest extends WebTestCase
     /**
      * {@inheritdoc}
      */
-    protected static function createKernel(array $options = [])
+    protected static function createKernel(array $options = []): KernelInterface
     {
         return new AppKernel(
             $options['environment'] ?? 'test',

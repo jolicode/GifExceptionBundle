@@ -23,7 +23,7 @@ class AppKernel extends Kernel
     /**
      * {@inheritdoc}
      */
-    public function registerBundles()
+    public function registerBundles(): iterable
     {
         $bundles = [
             new FrameworkBundle(),
@@ -45,7 +45,7 @@ class AppKernel extends Kernel
     /**
      * {@inheritdoc}
      */
-    public function getCacheDir()
+    public function getCacheDir(): string
     {
         return sys_get_temp_dir() . '/GiftExceptionBundle/cache';
     }
@@ -53,7 +53,7 @@ class AppKernel extends Kernel
     /**
      * {@inheritdoc}
      */
-    public function getLogDir()
+    public function getLogDir(): string
     {
         return sys_get_temp_dir() . '/GiftExceptionBundle/logs';
     }
