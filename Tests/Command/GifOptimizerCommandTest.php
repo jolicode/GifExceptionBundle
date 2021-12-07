@@ -33,11 +33,10 @@ class GifOptimizerCommandTest extends KernelTestCase
         copy($this->prototypeGif, $this->testGif);
     }
 
-    /**
-     * @expectedException \RuntimeException
-     */
     public function testExceptionRaisedForInvalidImageDir(): void
     {
+        $this->expectException(\RuntimeException::class);
+
         $this->getOutputForCommand('jolicode:gifexception:optimize', ['image_dir' => 'foobar']);
     }
 
