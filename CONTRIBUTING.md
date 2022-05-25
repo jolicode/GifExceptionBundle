@@ -88,5 +88,4 @@ git push -f origin <your-branch>
 
 Your pull request will be automatically updated.
 
-
 Thank you!
