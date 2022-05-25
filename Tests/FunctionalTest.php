@@ -76,7 +76,7 @@ class FunctionalTest extends WebTestCase
     {
         $dom = new \DOMDocument();
         @$dom->loadHTML($content); // svg throw a warning
-        $xpath = new \DomXpath($dom);
+        $xpath = new \DOMXPath($dom);
 
         // SF < 3.2 and image replaced
         $image = $xpath->query('//img[@alt="Exception detected!"]')->item(0);
