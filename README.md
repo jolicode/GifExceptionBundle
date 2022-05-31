@@ -8,7 +8,7 @@ The GhostBuster of your exception page!
 
 It displays a GIF instead of Symfony's ghost on exception page and it's compatible with Symfony versions from 4.4 to latest. Here is what it looks like :
 
-![Demo sf 3.3](Resources/doc/images/demo.gif)
+![Demo Symfony  4.4](Resources/doc/images/demo.gif)
 
 *Be aware that we can not be held responsible for any loss of productivity during development.*
 
@@ -24,7 +24,7 @@ Now enjoy your exceptions \o/
 
 ## Add some more gifs!
 
-We need you to improve the included GIFs! Do not hesitate to open PRs to add 
+We need you to improve the included GIFs! Do not hesitate to open PRs to add
 more gifs in [Resources/public/images/](Resources/public/images/), it will be very welcomed! :wink:
 
 ## Optimizing gifs
@@ -42,8 +42,8 @@ bin/console jolicode:gifexception:optimize
 ```
 
 Although it would probably make more sense to use the former and push up the optimized gifs.
- 
-It uses [gifsicle](https://www.lcdf.org/gifsicle/) to optimize gifs via the [image-optimizer](https://github.com/psliwa/image-optimizer) library. 
+
+It uses [gifsicle](https://www.lcdf.org/gifsicle/) to optimize gifs via the [image-optimizer](https://github.com/psliwa/image-optimizer) library.
 
 ## Further documentation
 
