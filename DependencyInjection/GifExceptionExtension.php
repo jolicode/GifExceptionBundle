@@ -18,10 +18,7 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 class GifExceptionExtension extends Extension
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function load(array $configs, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container): void
     {
         if (!$container->getParameter('kernel.debug')) {
             return;

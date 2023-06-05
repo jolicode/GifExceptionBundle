@@ -5,5 +5,5 @@
 /vendor
 
 # Temporary
-/Tests/app/cache
-/Tests/app/logs
+/tests/app/var
+/tests/app/public/bundles

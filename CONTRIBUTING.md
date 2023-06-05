@@ -51,9 +51,22 @@ Run the tests using the following script:
 make test
 ```
 
+## Manual testing
+
+If you want to manually test the error page, you can start the demo application
+by running the following command:
+
+```shell
+cd tests/app && bin/console assets:install && symfony serve
+```
+
+Then open your browser at the displayed url (something like [http://127.0.0.1:8000](http://localhost:8000/).
+You can now browse urls like [http://127.0.0.1:8000/error-XXX](http://localhost:8000/error-404)
+where XXX is the HTTP status code you want to test.
+
 ## Standard code
 
-Use [PHP CS fixer](http://cs.sensiolabs.org/) to make your code compliant with
+Use [PHP CS fixer](https://cs.symfony.com/) to make your code compliant with
 GifExceptionBundle's coding standards:
 
 ```shell

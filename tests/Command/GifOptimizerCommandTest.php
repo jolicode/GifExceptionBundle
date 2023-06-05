@@ -16,8 +16,8 @@ use Joli\GifExceptionBundle\Tests\KernelTestCase;
 
 class GifOptimizerCommandTest extends KernelTestCase
 {
-    private $prototypeGif;
-    private $testGif;
+    private string $prototypeGif;
+    private string $testGif;
 
     protected function setUp(): void
     {
@@ -40,7 +40,7 @@ class GifOptimizerCommandTest extends KernelTestCase
         $this->getOutputForCommand('jolicode:gifexception:optimize', ['image_dir' => 'foobar']);
     }
 
-    public function testGifIsResizedToExpectedWidth()
+    public function testGifIsResizedToExpectedWidth(): void
     {
         [$originalWidth] = getimagesize($this->testGif);
 
@@ -62,7 +62,7 @@ class GifOptimizerCommandTest extends KernelTestCase
         self::assertNotSame($originalWidth, $optimizedWidth);
     }
 
-    public function testGifIsSmallerFileSize()
+    public function testGifIsSmallerFileSize(): void
     {
         $originalSize = filesize($this->testGif);
 

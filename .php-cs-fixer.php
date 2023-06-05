@@ -20,7 +20,7 @@ $fileHeaderComment = <<<'EOF'
 
 $finder = PhpCsFixer\Finder::create()
     ->in(__DIR__)
-    ->exclude('app/cache')
+    ->exclude('app/var')
     ->append([
         __FILE__,
     ])

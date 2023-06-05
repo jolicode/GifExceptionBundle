@@ -18,41 +18,22 @@ use Symfony\Component\HttpKernel\KernelEvents;
 
 class ReplaceImageListener implements EventSubscriberInterface
 {
-    /** @var string[][] */
-    private $gifs;
-
-    /** @var string */
-    private $exceptionController;
-
-    /** @var Packages */
-    private $packages;
-
-    /**
-     * @param string[][] $gifs
-     */
-    public function __construct(array $gifs, string $exceptionController, Packages $packages = null)
-    {
-        $this->gifs = $gifs;
-        $this->exceptionController = $exceptionController;
-        $this->packages = $packages;
+    public function __construct(
+        /** @var string[][] */
+        private array $gifs,
+        private string $exceptionController,
+        private ?Packages $packages = null
+    ) {
     }
 
     /**
      * Handle the response for exception and replace the little Phantom by a random Gif.
      */
-    public function onKernelResponse(ResponseEvent $event)
+    public function onKernelResponse(ResponseEvent $event): void
     {
-        // Symfony > 5.3
-        if (method_exists($event, 'isMainRequest')) {
-            if ($event->isMainRequest()
-                || $event->getRequest()->attributes->get('_controller') !== $this->exceptionController) {
-                return;
-            }
-        } else {
-            if ($event->isMasterRequest()
-                || $event->getRequest()->attributes->get('_controller') !== $this->exceptionController) {
-                return;
-            }
+        if ($event->isMainRequest()
+            || $event->getRequest()->attributes->get('_controller') !== $this->exceptionController) {
+            return;
         }
 
         $exception = $event->getRequest()->attributes->get('exception');
@@ -114,7 +95,7 @@ class ReplaceImageListener implements EventSubscriberInterface
     }
 
     /**
-     * Return a the url of given gif in the given directory.
+     * Return the url of given gif in the given directory.
      */
     private function getGifUrl(string $dir, string $gif): string
     {
@@ -122,7 +103,7 @@ class ReplaceImageListener implements EventSubscriberInterface
     }
 
     /**
-     * Generate an url in both Symfony 2 and Symfony 3+ compatible ways.
+     * Generate an url with the asset package if available.
      */
     private function generateUrl(string $url): string
     {

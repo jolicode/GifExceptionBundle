@@ -13,41 +13,24 @@ namespace Joli\GifExceptionBundle\Command;
 
 use ImageOptimizer\Optimizer;
 use ImageOptimizer\OptimizerFactory;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
+#[AsCommand(name: 'jolicode:gifexception:optimize')]
 class GifOptimizerCommand extends Command
 {
-    /**
-     * @var string The name of the command
-     */
-    private const COMMAND_NAME = 'jolicode:gifexception:optimize';
-
-    /**
-     * @var string
-     */
     private const DEFAULT_OPTIMIZATION_LEVEL = '-O3';
-
-    /**
-     * @var int
-     */
     private const DEFAULT_WIDTH = 145;
 
-    /**
-     * @var Optimizer
-     */
-    private $optimizer;
+    private Optimizer $optimizer;
 
-    /**
-     * {@inheritdoc}
-     */
-    protected function configure()
+    protected function configure(): void
     {
         $this
-            ->setName(self::COMMAND_NAME)
             ->addArgument(
                 'image_dir',
                 InputArgument::OPTIONAL,
@@ -72,15 +55,10 @@ class GifOptimizerCommand extends Command
             ->setDescription('Optimize gifs')
         ;
 
-        if (method_exists($this, 'setHidden')) {
-            $this->setHidden(true);
-        }
+        $this->setHidden(true);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    protected function initialize(InputInterface $input, OutputInterface $output)
+    protected function initialize(InputInterface $input, OutputInterface $output): void
     {
         $ignoreErrors = (bool) $input->getOption('ignore_errors');
         $optimizationLevel = $input->getOption('optimization_level');
@@ -95,9 +73,6 @@ class GifOptimizerCommand extends Command
         $this->optimizer = $factory->get('gif');
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $imageDir = $input->getArgument('image_dir');
@@ -136,7 +111,7 @@ class GifOptimizerCommand extends Command
         if ($bytes <= $unit) {
             return $bytes . ' B';
         }
-        $exp = (int) ((log($bytes) / log($unit)));
+        $exp = (int) (log($bytes) / log($unit));
         $pre = ($useStandard ? 'kMGTPE' : 'KMGTPE');
         $pre = $pre[$exp - 1] . ($useStandard ? '' : 'i');
 

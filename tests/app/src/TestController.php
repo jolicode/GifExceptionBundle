@@ -9,20 +9,17 @@
  * file that was distributed with this source code.
  */
 
-namespace Joli\GifExceptionBundle\Tests\src;
+namespace Joli\GifExceptionBundle\Tests\app\src;
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\HttpException;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class TestController
 {
-    public function error404Action()
+    public function errorAction(Request $request): void
     {
-        throw new NotFoundHttpException();
-    }
+        $statusCode = $request->attributes->getInt('status', 404);
 
-    public function error418Action()
-    {
-        throw new HttpException(418);
+        throw new HttpException($statusCode, sprintf('This is HTTP %s error page!', $statusCode));
     }
 }
