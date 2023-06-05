@@ -1,6 +1,6 @@
 # Changes between versions
 
-## 1.7.0 (not released yet)
+## 1.7.0 (2023-06-05)
 
 * Drop support for PHP < 7.4
 * Add support for PHP 8.1
