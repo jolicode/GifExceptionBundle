@@ -1,9 +1,10 @@
 # Changes between versions
 
-## 1.8.0 (Not yet released)
+## 1.8.0 (2023-06-06)
 
 * Dropped support for PHP < 8.0 and Symfony < 5.4
 * Added support for PHP 8.2 and Symfony 6
+* Modernized code base and tests
 
 ## 1.7.0 (2023-06-05)
 
