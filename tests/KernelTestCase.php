@@ -11,7 +11,7 @@
 
 namespace Joli\GifExceptionBundle\Tests;
 
-use Joli\GifExceptionBundle\Tests\app\AppKernel;
+use Joli\GifExceptionBundle\Tests\app\src\Kernel;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase as BaseKernelTestCase;
 use Symfony\Component\Console\Tester\ApplicationTester;
@@ -19,10 +19,7 @@ use Symfony\Component\HttpKernel\KernelInterface;
 
 abstract class KernelTestCase extends BaseKernelTestCase
 {
-    /**
-     * @var ApplicationTester An Application test
-     */
-    protected $tester;
+    protected ApplicationTester $tester;
 
     protected function setUp(): void
     {
@@ -35,9 +32,6 @@ abstract class KernelTestCase extends BaseKernelTestCase
         $this->tester = new ApplicationTester($application);
     }
 
-    /**
-     * Get the output for a Command.
-     */
     protected function getOutputForCommand(string $commandName, array $args = [], array $options = [])
     {
         $this->tester->run(array_merge(['command' => $commandName], $args, $options));
@@ -45,12 +39,9 @@ abstract class KernelTestCase extends BaseKernelTestCase
         return $this->tester->getDisplay();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected static function createKernel(array $options = []): KernelInterface
     {
-        return new AppKernel(
+        return new Kernel(
             $options['environment'] ?? 'test',
             $options['debug'] ?? true
         );

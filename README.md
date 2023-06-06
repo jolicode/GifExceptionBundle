@@ -2,15 +2,19 @@
 
 [![Latest Stable Version](https://poser.pugx.org/jolicode/gif-exception-bundle/v/stable)](https://packagist.org/packages/jolicode/gif-exception-bundle)
 [![Total Downloads](https://poser.pugx.org/jolicode/gif-exception-bundle/downloads)](https://packagist.org/packages/jolicode/gif-exception-bundle)
-[![Build Status](https://travis-ci.org/jolicode/GifExceptionBundle.svg?branch=main)](https://travis-ci.org/jolicode/GifExceptionBundle)
 
 The GhostBuster of your exception page!
 
-It displays a GIF instead of Symfony's ghost on exception page and it's compatible with Symfony versions from 4.4 to latest. Here is what it looks like :
+It displays a GIF instead of Symfony's ghost on exception page and it's compatible with Symfony versions from 5.4 to latest.
+Here is what it looks like :
 
 ![Demo Symfony  4.4](Resources/doc/images/demo.gif)
 
 *Be aware that we can not be held responsible for any loss of productivity during development.*
+
+> **Note**
+> Support for previous Symfony versions was available in previous versions of this bundle.
+> See the [CHANGELOG](CHANGELOG.md) for more details.
 
 ## Installation
 

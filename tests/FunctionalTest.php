@@ -11,13 +11,13 @@
 
 namespace Joli\GifExceptionBundle\Tests;
 
-use Joli\GifExceptionBundle\Tests\app\AppKernel;
+use Joli\GifExceptionBundle\Tests\app\src\Kernel;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpKernel\KernelInterface;
 
 class FunctionalTest extends WebTestCase
 {
-    public function testItDoesNotDisplayGifOnExceptionPageIfTheBundleIsNotEnabled()
+    public function testItDoesNotDisplayGifOnExceptionPageIfTheBundleIsNotEnabled(): void
     {
         $client = static::createClient(['environment' => 'prod', 'debug' => true]);
 
@@ -31,7 +31,7 @@ class FunctionalTest extends WebTestCase
         self::assertFalse($image->hasAttribute('data-gif'));
     }
 
-    public function testItDisplaysGifOnExceptionPageIfTheBundleIsEnabled()
+    public function testItDisplaysGifOnExceptionPageIfTheBundleIsEnabled(): void
     {
         $client = static::createClient(['environment' => 'dev', 'debug' => true]);
 
@@ -56,23 +56,15 @@ class FunctionalTest extends WebTestCase
         self::assertStringMatchesFormat('%s/gifexception/images/other/%s.gif', $image->getAttribute('src'));
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected static function createKernel(array $options = []): KernelInterface
     {
-        return new AppKernel(
+        return new Kernel(
             $options['environment'] ?? 'test',
             $options['debug'] ?? true
         );
     }
 
-    /**
-     * @param $content
-     *
-     * @return \DOMElement
-     */
-    private function getImage($content)
+    private function getImage(string $content): \DOMElement
     {
         $dom = new \DOMDocument();
         @$dom->loadHTML($content); // svg throw a warning

@@ -1,0 +1,34 @@
+framework:
+    router:
+        resource: "%kernel.project_dir%/config/routing.yml"
+        strict_requirements: ~
+    secret: ThisTokenIsEnoughSecretForOurTests
+    test: null
+    http_method_override: false
+    profiler:
+        only_exceptions: false
+        collect_serializer_data: true
+
+web_profiler:
+    toolbar: true
+    intercept_redirects: false
+
+twig:
+    exception_controller: null
+    strict_variables: '%kernel.debug%'
+
+monolog:
+    channels:
+        - deprecation # Deprecations are logged in the dedicated "deprecation" channel when it exists
+
+    handlers:
+        main:
+            type: fingers_crossed
+            action_level: error
+            handler: nested
+            excluded_http_codes: [404, 405]
+            channels: ["!event"]
+        nested:
+            type: stream
+            path: "%kernel.logs_dir%/%kernel.environment%.log"
+            level: debug

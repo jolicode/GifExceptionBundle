@@ -1,13 +1,18 @@
 # Changes between versions
 
+## 1.8.0 (Not yet released)
+
+* Dropped support for PHP < 8.0 and Symfony < 5.4
+* Added support for PHP 8.2 and Symfony 6
+
 ## 1.7.0 (2023-06-05)
 
-* Drop support for PHP < 7.4
-* Add support for PHP 8.1
+* Dropped support for PHP < 7.4
+* Added support for PHP 8.1
 
 ## 1.6.4 (2021-06-14)
 
-* Fix undefined method call exception
+* Fixed undefined method call exception
 
 ## 1.6.3 (2021-06-14)
 
@@ -19,7 +24,7 @@
 
 ## 1.6.1 (2020-03-02)
 
-* Fix Fatal Error support #40
+* Fixed Fatal Error support #40
 
 ## 1.6.0 (2020-03-02)
 
@@ -33,7 +38,7 @@
 
 ## 1.4.3 (2018-07-24)
 
-* Hid internal command
+* Hide internal command
 
 ## 1.4.2 (2017-12-24) :santa:
 

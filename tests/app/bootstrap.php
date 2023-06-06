@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-$loader = require __DIR__ . '/../vendor/autoload.php';
-require __DIR__ . '/app/AppKernel.php';
+$loader = require __DIR__ . '/../../vendor/autoload.php';
+require __DIR__ . '/src/Kernel.php';
 
 return $loader;
