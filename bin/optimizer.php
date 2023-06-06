@@ -10,7 +10,7 @@
  * file that was distributed with this source code.
  */
 
-use Joli\GifExceptionBundle\Tests\app\AppKernel;
+use Joli\GifExceptionBundle\Tests\app\src\Kernel;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Input\ArgvInput;
 
@@ -36,6 +36,6 @@ array_unshift($args, 'jolicode:gifexception:optimize');
 array_unshift($args, __DIR__ . '/optimizer.php');
 
 $input = new ArgvInput($args);
-$kernel = new AppKernel('dev', false);
+$kernel = new Kernel('dev', false);
 $application = new Application($kernel);
 $application->run($input);

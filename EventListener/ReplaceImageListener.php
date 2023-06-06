@@ -62,9 +62,6 @@ class ReplaceImageListener implements EventSubscriberInterface
         $event->getResponse()->setContent($content);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public static function getSubscribedEvents(): array
     {
         return [
@@ -78,7 +75,7 @@ class ReplaceImageListener implements EventSubscriberInterface
     private function getGifDir(int $statusCode): string
     {
         if (\array_key_exists($statusCode, $this->gifs) && \count($this->gifs[$statusCode]) > 0) {
-            return $statusCode;
+            return (string) $statusCode;
         }
 
         return 'other';

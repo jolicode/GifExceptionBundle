@@ -7,7 +7,6 @@ framework:
     http_method_override: false
     profiler:
         only_exceptions: false
-        collect_serializer_data: true
 
 web_profiler:
     toolbar: true
