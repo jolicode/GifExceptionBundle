@@ -1,5 +1,10 @@
 # Changes between versions
 
+## 1.8.1 (2023-06-07)
+
+* Fixed CI
+* Added more strictness with PHPStan level max
+
 ## 1.8.0 (2023-06-06)
 
 * Dropped support for PHP < 8.0 and Symfony < 5.4
