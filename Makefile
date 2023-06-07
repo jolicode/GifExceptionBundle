@@ -13,3 +13,6 @@ cs_dry_run: ## Test if PHP CS is correct
 
 test: ## Run the test suite
 	vendor/bin/simple-phpunit
+
+phpstan: ## Run static analysis
+	vendor/bin/phpstan analyse -c phpstan.neon

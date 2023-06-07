@@ -30,13 +30,21 @@ class GifExceptionExtension extends Extension
         $gifs = [];
 
         $pattern = __DIR__ . '/../Resources/public/images/*/*.gif';
-        foreach (glob($pattern) as $path) {
-            $gifs[basename(\dirname($path))][] = basename($path);
+        $images = glob($pattern);
+
+        if ($images) {
+            foreach ($images as $path) {
+                $gifs[basename(\dirname($path))][] = basename($path);
+            }
         }
 
         $pattern = __DIR__ . '/../Resources/public/images/other/*.gif';
-        foreach (glob($pattern) as $path) {
-            $gifs['other'][] = basename($path);
+        $images = glob($pattern);
+
+        if ($images) {
+            foreach ($images as $path) {
+                $gifs['other'][] = basename($path);
+            }
         }
 
         $container->getDefinition('gif_exception.listener.replace_image')->replaceArgument(0, $gifs);

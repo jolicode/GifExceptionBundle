@@ -77,14 +77,29 @@ class GifOptimizerCommand extends Command
     {
         $imageDir = $input->getArgument('image_dir');
 
-        if (!is_dir($imageDir)) {
+        if (!\is_string($imageDir) || !is_dir($imageDir)) {
             throw new \RuntimeException($imageDir . ' is not a valid directory');
         }
 
         $pattern = $imageDir . '/*/*.gif';
-        foreach (glob($pattern) as $path) {
+        $images = glob($pattern);
+
+        if (!$images) {
+            throw new \RuntimeException('No images found in ' . $pattern);
+        }
+
+        foreach ($images as $path) {
             $realPath = realpath($path);
+
+            if (!$realPath) {
+                throw new \RuntimeException('Could not find ' . $path);
+            }
+
             $originalFileSize = filesize($realPath);
+
+            if (!$originalFileSize) {
+                throw new \RuntimeException('Could not get file size for ' . $realPath);
+            }
 
             $output->writeln(sprintf('<info>Optimizing image: %s</info>', $realPath));
             $output->writeln(sprintf('<comment>Before: %s</comment>', $this->formatBytes($originalFileSize)));
@@ -95,6 +110,10 @@ class GifOptimizerCommand extends Command
             clearstatcache(true, $realPath);
 
             $optimizedFileSize = filesize($realPath);
+
+            if (!$optimizedFileSize) {
+                throw new \RuntimeException('Could not get file size for ' . $realPath);
+            }
 
             $output->writeln(sprintf('<comment>After: %s</comment>', $this->formatBytes($optimizedFileSize)));
 
