@@ -1,5 +1,9 @@
 # Changes between versions
 
+## Not released yet
+
+* Updated GIF optimization command
+
 ## 1.8.1 (2023-06-07)
 
 * Fixed CI

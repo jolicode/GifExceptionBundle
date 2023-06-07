@@ -39,10 +39,10 @@ If you are adding gifs we strongly recommend optimizing them. There is a tool to
 bin/optimizer.php
 ```
 
-You can also run this from a Symfony project if you have this as an installed bundle via:
+You can also run this command directly from your Symfony application:
 
 ```
-bin/console jolicode:gifexception:optimize
+bin/console gifexception:optimize
 ```
 
 Although it would probably make more sense to use the former and push up the optimized gifs.
