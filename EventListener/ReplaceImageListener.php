@@ -37,6 +37,10 @@ class ReplaceImageListener implements EventSubscriberInterface
         }
 
         $exception = $event->getRequest()->attributes->get('exception');
+        if (!($exception instanceof \Throwable)) {
+            return;
+        }
+
         // Status code is not set by the exception controller but only by the
         // kernel at the very end.
         // So lets use the status code from the flatten exception instead.
@@ -51,7 +55,7 @@ class ReplaceImageListener implements EventSubscriberInterface
         $gif = $this->getRandomGif($dir);
         $url = $this->getGifUrl($dir, $gif);
 
-        $content = $event->getResponse()->getContent();
+        $content = (string) $event->getResponse()->getContent();
 
         $content = preg_replace(
             '@<div class="exception-illustration hidden-xs-down">(.*?)</div>@ims',
@@ -86,6 +90,10 @@ class ReplaceImageListener implements EventSubscriberInterface
      */
     private function getRandomGif(string $dir): string
     {
+        if (!\array_key_exists($dir, $this->gifs) || 0 === \count($this->gifs[$dir])) {
+            return '';
+        }
+
         $imageIndex = random_int(0, \count($this->gifs[$dir]) - 1);
 
         return $this->gifs[$dir][$imageIndex];
