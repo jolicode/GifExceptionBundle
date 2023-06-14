@@ -20,7 +20,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-#[AsCommand(name: 'jolicode:gifexception:optimize')]
+#[AsCommand(name: 'gifexception:optimize', description: 'Optimize gifs')]
 class GifOptimizerCommand extends Command
 {
     private const DEFAULT_OPTIMIZATION_LEVEL = '-O3';

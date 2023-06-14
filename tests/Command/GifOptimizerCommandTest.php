@@ -37,7 +37,7 @@ class GifOptimizerCommandTest extends KernelTestCase
     {
         $this->expectException(\RuntimeException::class);
 
-        $this->getOutputForCommand('jolicode:gifexception:optimize', ['image_dir' => 'foobar']);
+        $this->getOutputForCommand('gifexception:optimize', ['image_dir' => 'foobar']);
     }
 
     public function testGifIsResizedToExpectedWidth(): void
@@ -49,7 +49,7 @@ class GifOptimizerCommandTest extends KernelTestCase
         $options = ['--resize_width' => $expectedWidth];
 
         try {
-            $this->getOutputForCommand('jolicode:gifexception:optimize', $args, $options);
+            $this->getOutputForCommand('gifexception:optimize', $args, $options);
         } catch (CommandNotFound $e) {
             $this->markTestSkipped('Gif optimizer tool is not executable');
         }
@@ -69,7 +69,7 @@ class GifOptimizerCommandTest extends KernelTestCase
         $args = ['image_dir' => __DIR__];
 
         try {
-            $this->getOutputForCommand('jolicode:gifexception:optimize', $args);
+            $this->getOutputForCommand('gifexception:optimize', $args);
         } catch (CommandNotFound $e) {
             $this->markTestSkipped('Gif optimizer tool is not executable');
         }
