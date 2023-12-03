@@ -3,6 +3,9 @@
 ## Not released yet
 
 * Updated GIF optimization command
+* Dropped support for PHP < 8.1
+* Added support for PHP 8.3
+* Added support for Symfony 7.0
 
 ## 1.8.1 (2023-06-07)
 
