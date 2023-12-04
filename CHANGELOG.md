@@ -1,6 +1,6 @@
 # Changes between versions
 
-## Not released yet
+## 1.9.0 (2023-12-04)
 
 * Updated GIF optimization command
 * Dropped support for PHP < 8.1
