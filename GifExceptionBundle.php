@@ -13,6 +13,4 @@ namespace Joli\GifExceptionBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class GifExceptionBundle extends Bundle
-{
-}
+class GifExceptionBundle extends Bundle {}

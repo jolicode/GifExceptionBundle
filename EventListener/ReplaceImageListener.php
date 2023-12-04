@@ -23,8 +23,7 @@ class ReplaceImageListener implements EventSubscriberInterface
         private array $gifs,
         private string $exceptionController,
         private ?Packages $packages = null
-    ) {
-    }
+    ) {}
 
     /**
      * Handle the response for exception and replace the little Phantom by a random Gif.
