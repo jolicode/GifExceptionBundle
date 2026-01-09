@@ -1,5 +1,11 @@
 # Changes between versions
 
+## 1.10.0 (2026-01-09)
+
+* Added support for Symfony 8.0
+* Changed tests routing configuration from YAML to PHP
+* Modernized code base (fully qualified function calls, type hints)
+
 ## 1.9.0 (2023-12-04)
 
 * Updated GIF optimization command

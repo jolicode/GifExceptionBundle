@@ -20,6 +20,6 @@ class TestController
     {
         $statusCode = $request->attributes->getInt('status', 404);
 
-        throw new HttpException($statusCode, sprintf('This is HTTP %s error page!', $statusCode));
+        throw new HttpException($statusCode, \sprintf('This is HTTP %s error page!', $statusCode));
     }
 }

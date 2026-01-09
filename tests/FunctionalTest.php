@@ -21,8 +21,10 @@ class FunctionalTest extends WebTestCase
     {
         $client = static::createClient(['environment' => 'prod', 'debug' => true]);
 
-        $crawler = $client->request('GET', '/error-404');
+        $crawler = $client->request('GET', '/error-404?web=1', [], [], ['HTTP_ACCEPT' => 'text/html']);
         $response = $client->getResponse();
+
+        echo $response->getContent();
 
         self::assertSame(404, $response->getStatusCode());
 
@@ -35,7 +37,7 @@ class FunctionalTest extends WebTestCase
     {
         $client = static::createClient(['environment' => 'dev', 'debug' => true]);
 
-        $crawler = $client->request('GET', '/error-404');
+        $crawler = $client->request('GET', '/error-404', [], [], ['HTTP_ACCEPT' => 'text/html']);
         $response = $client->getResponse();
 
         self::assertSame(404, $response->getStatusCode());
@@ -45,7 +47,7 @@ class FunctionalTest extends WebTestCase
         self::assertTrue($image->hasAttribute('data-gif'), 'Image was not replaced.');
         self::assertStringMatchesFormat('%s/gifexception/images/404/%s.gif', $image->getAttribute('src'));
 
-        $crawler = $client->request('GET', '/error-418');
+        $crawler = $client->request('GET', '/error-418', [], [], ['HTTP_ACCEPT' => 'text/html']);
         $response = $client->getResponse();
 
         self::assertSame(418, $response->getStatusCode());

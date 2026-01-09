@@ -22,8 +22,9 @@ class ReplaceImageListener implements EventSubscriberInterface
         /** @var string[][] */
         private array $gifs,
         private string $exceptionController,
-        private ?Packages $packages = null
-    ) {}
+        private ?Packages $packages = null,
+    ) {
+    }
 
     /**
      * Handle the response for exception and replace the little Phantom by a random Gif.
@@ -58,7 +59,7 @@ class ReplaceImageListener implements EventSubscriberInterface
 
         $content = preg_replace(
             '@<div class="exception-illustration hidden-xs-down">(.*?)</div>@ims',
-            sprintf('<div class="exception-illustration hidden-xs-down" style="opacity:1"><img alt="Exception detected!" src="%s" data-gif style="height:66px" /></div>', $url),
+            \sprintf('<div class="exception-illustration hidden-xs-down" style="opacity:1"><img alt="Exception detected!" src="%s" data-gif style="height:66px" /></div>', $url),
             $content
         );
 
@@ -103,7 +104,7 @@ class ReplaceImageListener implements EventSubscriberInterface
      */
     private function getGifUrl(string $dir, string $gif): string
     {
-        return $this->generateUrl(sprintf('bundles/gifexception/images/%s/%s', $dir, $gif));
+        return $this->generateUrl(\sprintf('bundles/gifexception/images/%s/%s', $dir, $gif));
     }
 
     /**
