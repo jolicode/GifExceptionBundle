@@ -11,8 +11,9 @@
 
 namespace Joli\GifExceptionBundle\Command;
 
-use ImageOptimizer\Optimizer;
-use ImageOptimizer\OptimizerFactory;
+use Spatie\ImageOptimizer\OptimizerChain;
+use Spatie\ImageOptimizer\OptimizerChainFactory;
+use Spatie\ImageOptimizer\Optimizers\Gifsicle;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -26,7 +27,7 @@ class GifOptimizerCommand extends Command
     private const DEFAULT_OPTIMIZATION_LEVEL = '-O3';
     private const DEFAULT_WIDTH = 145;
 
-    private Optimizer $optimizer;
+    private OptimizerChain $optimizer;
 
     protected function configure(): void
     {
@@ -51,7 +52,6 @@ class GifOptimizerCommand extends Command
                 'Width you would like to resize to?',
                 self::DEFAULT_WIDTH
             )
-            ->addOption('ignore_errors', null, InputOption::VALUE_NONE, 'Would you like to ignore errors?')
             ->setDescription('Optimize gifs')
         ;
 
@@ -60,17 +60,18 @@ class GifOptimizerCommand extends Command
 
     protected function initialize(InputInterface $input, OutputInterface $output): void
     {
-        $ignoreErrors = (bool) $input->getOption('ignore_errors');
         $optimizationLevel = $input->getOption('optimization_level');
         $width = $input->getOption('resize_width');
 
-        $options = [
-            'ignore_errors' => $ignoreErrors,
-            'gifsicle_options' => ['-b', $optimizationLevel, '--resize-width=' . $width],
-        ];
-
-        $factory = new OptimizerFactory($options);
-        $this->optimizer = $factory->get('gif');
+        $this->optimizer = OptimizerChainFactory::create()
+            ->setOptimizers([
+                new Gifsicle([
+                    '-b',
+                    $optimizationLevel,
+                    '--resize-width=' . $width,
+                ]),
+            ])
+        ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int

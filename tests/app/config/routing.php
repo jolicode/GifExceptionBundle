@@ -29,6 +29,7 @@ return function (RoutingConfigurator $routes): void {
             ->prefix('/_wdt')
         ;
         $routes->import('@WebProfilerBundle/Resources/config/routing/profiler.php')
-            ->prefix('/_profiler');
+            ->prefix('/_profiler')
+        ;
     }
 };
