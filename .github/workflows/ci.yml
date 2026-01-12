@@ -42,9 +42,8 @@ jobs:
                     - "8.2"
                     - "8.3"
                     - "8.4"
-                    - "8.5"
+#                    - "8.5" # we need to replace ps/image-optimizer dependencie for enable this
                 symfony:
-                    - '5.4.*'
                     - '6.4.*'
                     - '7.3.*'
                     - '7.4.*'
