@@ -17,19 +17,18 @@ return function (RoutingConfigurator $routes): void {
         ->defaults(['_controller' => 'Joli\GifExceptionBundle\Tests\app\src\TestController::errorAction'])
     ;
 
-    if (file_exists(__DIR__ . '/../../../vendor/symfony/web-profiler-bundle/Resources/config/routing/wdt.php')) {
-        $routes->import('@WebProfilerBundle/Resources/config/routing/wdt.php')
-            ->prefix('/_wdt')
-        ;
-        $routes->import('@WebProfilerBundle/Resources/config/routing/profiler.php')
-            ->prefix('/_profiler')
-        ;
-    } else {
+    try {
         $routes->import('@WebProfilerBundle/Resources/config/routing/wdt.xml')
             ->prefix('/_wdt')
         ;
         $routes->import('@WebProfilerBundle/Resources/config/routing/profiler.xml')
             ->prefix('/_profiler')
         ;
+    } catch (Exception $e) {
+        $routes->import('@WebProfilerBundle/Resources/config/routing/wdt.php')
+            ->prefix('/_wdt')
+        ;
+        $routes->import('@WebProfilerBundle/Resources/config/routing/profiler.php')
+            ->prefix('/_profiler');
     }
 };
