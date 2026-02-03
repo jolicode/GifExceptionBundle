@@ -63,12 +63,16 @@ class GifOptimizerCommand extends Command
         $optimizationLevel = $input->getOption('optimization_level');
         $width = $input->getOption('resize_width');
 
+        if (!\is_numeric($width)) {
+            throw new \Exception('Invalid width.');
+        }
+
         $this->optimizer = OptimizerChainFactory::create()
             ->setOptimizers([
                 new Gifsicle([
                     '-b',
                     $optimizationLevel,
-                    sprintf('--resize-width=%s', (string) $width),
+                    \sprintf('--resize-width=%s', (string) $width),
                 ]),
             ])
         ;
