@@ -58,13 +58,10 @@ jobs:
                 exclude:
                     -   php-version: "8.1"
                         symfony: '8.0.*'
-                        operating-system: "ubuntu-latest"
                     -   php-version: "8.2"
                         symfony: '8.0.*'
-                        operating-system: "ubuntu-latest"
                     -   php-version: "8.3"
                         symfony: '8.0.*'
-                        operating-system: "ubuntu-latest"
         steps:
             - name: Checkout
               uses: actions/checkout@v3
