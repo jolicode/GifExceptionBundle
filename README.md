@@ -5,7 +5,7 @@
 
 The GhostBuster of your exception page!
 
-It displays a GIF instead of Symfony's ghost on exception page and it's compatible with Symfony versions from 5.4 to latest.
+It displays a GIF instead of Symfony's ghost on exception page and it's compatible with Symfony versions from 5.4 to 8.0.
 Here is what it looks like :
 
 ![Demo Symfony  4.4](Resources/doc/images/demo.gif)

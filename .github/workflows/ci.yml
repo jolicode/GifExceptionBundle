@@ -33,12 +33,21 @@ jobs:
                   REQUIRE_DEV: true
 
     ci:
-        name: Test PHP ${{ matrix.php-version }} ${{ matrix.name }}
+        name: "Tests (PHP ${{ matrix.php-version }}, Symfony ${{ matrix.symfony }})"
         runs-on: ubuntu-latest
         strategy:
             fail-fast: false
             matrix:
-                php-version: ['8.2', '8.3']
+                php-version:
+                    - "8.2"
+                    - "8.3"
+                    - "8.4"
+#                    - "8.5" # we need to replace ps/image-optimizer dependencie for enable this
+                symfony:
+                    - '6.4.*'
+                    - '7.3.*'
+                    - '7.4.*'
+                    - '8.0.*'
                 minimum-stability: ['']
                 composer-flags: ['']
                 name: ['']
@@ -46,6 +55,16 @@ jobs:
                     - php-version: 8.1
                       composer-flags: '--prefer-lowest'
                       name: '(prefer lowest dependencies)'
+                exclude:
+                    -   php-version: "8.1"
+                        symfony: '8.0.*'
+                        operating-system: "ubuntu-latest"
+                    -   php-version: "8.2"
+                        symfony: '8.0.*'
+                        operating-system: "ubuntu-latest"
+                    -   php-version: "8.3"
+                        symfony: '8.0.*'
+                        operating-system: "ubuntu-latest"
         steps:
             - name: Checkout
               uses: actions/checkout@v3
@@ -56,6 +75,9 @@ jobs:
                   php-version: ${{ matrix.php-version }}
                   extensions: mbstring, xml
                   ini-values: phar.readonly="Off"
+
+            - name: "Configure Symfony"
+              run: 'composer config extra.symfony.require "${{ matrix.symfony }}"'
 
             - name: Get composer cache directory
               id: composer-cache

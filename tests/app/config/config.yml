@@ -1,6 +1,6 @@
 framework:
     router:
-        resource: "%kernel.project_dir%/config/routing.yml"
+        resource: "%kernel.project_dir%/config/routing.php"
         strict_requirements: ~
     secret: ThisTokenIsEnoughSecretForOurTests
     test: null
@@ -11,11 +11,8 @@ framework:
 web_profiler:
     toolbar: true
     intercept_redirects: false
-
 twig:
-    exception_controller: null
     strict_variables: '%kernel.debug%'
-
 monolog:
     channels:
         - deprecation # Deprecations are logged in the dedicated "deprecation" channel when it exists

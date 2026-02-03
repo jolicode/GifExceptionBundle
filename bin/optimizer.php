@@ -18,7 +18,7 @@ if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
 } elseif (file_exists(__DIR__ . '/../../../../vendor/autoload.php')) {
     $loader = require __DIR__ . '/../../../../vendor/autoload.php';
 } else {
-    throw new \RuntimeException('Unable to load autoloader.');
+    throw new RuntimeException('Unable to load autoloader.');
 }
 
 $application = new Application('gifexception');

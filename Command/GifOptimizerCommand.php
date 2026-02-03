@@ -101,8 +101,8 @@ class GifOptimizerCommand extends Command
                 throw new \RuntimeException('Could not get file size for ' . $realPath);
             }
 
-            $output->writeln(sprintf('<info>Optimizing image: %s</info>', $realPath));
-            $output->writeln(sprintf('<comment>Before: %s</comment>', $this->formatBytes($originalFileSize)));
+            $output->writeln(\sprintf('<info>Optimizing image: %s</info>', $realPath));
+            $output->writeln(\sprintf('<comment>Before: %s</comment>', $this->formatBytes($originalFileSize)));
 
             $this->optimizer->optimize($realPath);
 
@@ -115,10 +115,10 @@ class GifOptimizerCommand extends Command
                 throw new \RuntimeException('Could not get file size for ' . $realPath);
             }
 
-            $output->writeln(sprintf('<comment>After: %s</comment>', $this->formatBytes($optimizedFileSize)));
+            $output->writeln(\sprintf('<comment>After: %s</comment>', $this->formatBytes($optimizedFileSize)));
 
             $percentage = 100 - (($optimizedFileSize / $originalFileSize) * 100);
-            $output->writeln(sprintf('<comment>Saving: %s%%</comment>', round($percentage)));
+            $output->writeln(\sprintf('<comment>Saving: %s%%</comment>', round($percentage)));
         }
 
         return 0;
@@ -134,6 +134,6 @@ class GifOptimizerCommand extends Command
         $pre = ($useStandard ? 'kMGTPE' : 'KMGTPE');
         $pre = $pre[$exp - 1] . ($useStandard ? '' : 'i');
 
-        return sprintf('%.1f %sB', $bytes / ($unit ** $exp), $pre);
+        return \sprintf('%.1f %sB', $bytes / ($unit ** $exp), $pre);
     }
 }
