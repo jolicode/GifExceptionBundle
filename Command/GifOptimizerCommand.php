@@ -63,7 +63,7 @@ class GifOptimizerCommand extends Command
         $optimizationLevel = $input->getOption('optimization_level');
         $width = $input->getOption('resize_width');
 
-        if (!\is_numeric($width)) {
+        if (!is_numeric($width)) {
             throw new \Exception('Invalid width.');
         }
 
