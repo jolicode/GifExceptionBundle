@@ -21,8 +21,8 @@ if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
     throw new RuntimeException('Unable to load autoloader.');
 }
 
-$application = new Application('gifexception');
-$application->add(new GifOptimizerCommand());
+$application = new Application('gifexception');dump($application);
+$application->addCommand(new GifOptimizerCommand());
 $application
     ->setDefaultCommand('gifexception:optimize', true)
     ->run()
