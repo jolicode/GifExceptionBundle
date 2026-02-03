@@ -11,7 +11,7 @@
 
 use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
 
-return function (RoutingConfigurator $routes): void {
+return static function (RoutingConfigurator $routes): void {
     $routes->add('test_routing_error', '/error-{status}')
         ->requirements(['status' => '\d+'])
         ->defaults(['_controller' => 'Joli\GifExceptionBundle\Tests\app\src\TestController::errorAction'])

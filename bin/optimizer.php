@@ -22,7 +22,7 @@ if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
 }
 
 $application = new Application('gifexception');
-$application->add(new GifOptimizerCommand());
+$application->addCommand(new GifOptimizerCommand());
 $application
     ->setDefaultCommand('gifexception:optimize', true)
     ->run()

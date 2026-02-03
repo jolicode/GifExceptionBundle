@@ -37,7 +37,7 @@ class ReplaceImageListener implements EventSubscriberInterface
         }
 
         $exception = $event->getRequest()->attributes->get('exception');
-        if (!($exception instanceof \Throwable)) {
+        if (!$exception instanceof \Throwable) {
             return;
         }
 

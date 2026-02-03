@@ -58,16 +58,16 @@ jobs:
                 exclude:
                     -   php-version: "8.1"
                         symfony: '8.0.*'
-                        operating-system: "ubuntu-latest"
                     -   php-version: "8.2"
                         symfony: '8.0.*'
-                        operating-system: "ubuntu-latest"
                     -   php-version: "8.3"
                         symfony: '8.0.*'
-                        operating-system: "ubuntu-latest"
         steps:
             - name: Checkout
               uses: actions/checkout@v3
+
+            - name: Install gifsicle
+              run: sudo apt-get update && sudo apt-get install -y gifsicle
 
             - name: Setup PHP, with composer and extensions
               uses: shivammathur/setup-php@v2
@@ -84,7 +84,7 @@ jobs:
               run: echo "::set-output name=dir::$(composer config cache-files-dir)"
 
             - name: Cache composer dependencies
-              uses: actions/cache@v2
+              uses: actions/cache@v4
               with:
                   path: ${{ steps.composer-cache.outputs.dir }}
                   key: ${{ runner.os }}-composer-${{ github.sha }}
