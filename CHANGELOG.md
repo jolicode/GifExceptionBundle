@@ -1,5 +1,10 @@
 # Changes between versions
 
+## 1.10.0 (2026-02-03)
+
+* Added support for PHP 8.5
+* Added support for Symfony 8.0
+
 ## 1.9.0 (2023-12-04)
 
 * Updated GIF optimization command
