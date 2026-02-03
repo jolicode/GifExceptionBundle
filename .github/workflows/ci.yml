@@ -66,6 +66,9 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v3
 
+            - name: Install gifsicle
+              run: sudo apt-get update && sudo apt-get install -y gifsicle
+
             - name: Setup PHP, with composer and extensions
               uses: shivammathur/setup-php@v2
               with:
