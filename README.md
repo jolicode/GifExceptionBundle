@@ -53,12 +53,15 @@ It uses [gifsicle](https://www.lcdf.org/gifsicle/) to optimize gifs via the [ima
 
 This project uses [Castor](https://castor.jolicode.com/) as a task runner for common development tasks.
 
-To install Castor, download the PHAR:
+To install Castor, download the PHAR (example for Linux AMD64):
 
 ```shell
 curl -L https://github.com/jolicode/castor/releases/latest/download/castor.linux-amd64.phar -o castor
 chmod +x castor
 ```
+
+> **Note:** For other platforms (macOS, Windows, ARM), see the [Castor installation documentation](https://castor.jolicode.com/getting-started/installation).
+> You can either place the `castor` binary in your PATH (e.g., `/usr/local/bin/castor`) or keep it in the project root and run it as `./castor`.
 
 Available tasks:
 
