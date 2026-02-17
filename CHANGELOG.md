@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+* Increased Gif size
 * Replaced internal Makefile by Castor
 
 ## 1.10.0 (2026-02-03)
