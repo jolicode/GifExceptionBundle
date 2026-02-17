@@ -5,3 +5,4 @@ parameters:
 	excludePaths:
 	    - vendor
 	    - tests
+	    - castor.php
