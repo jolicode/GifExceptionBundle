@@ -59,7 +59,7 @@ class ReplaceImageListener implements EventSubscriberInterface
 
         $content = preg_replace(
             '@<div class="exception-illustration hidden-xs-down">(.*?)</div>@ims',
-            \sprintf('<div class="exception-illustration hidden-xs-down" style="opacity:1"><img alt="Exception detected!" src="%s" data-gif style="height:66px" /></div>', $url),
+            \sprintf('<div class="exception-illustration hidden-xs-down" style="opacity:1; height: 100px"><img alt="Exception detected!" src="%s" data-gif style="height:100px" /></div>', $url),
             $content
         );
 
