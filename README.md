@@ -13,7 +13,7 @@ Here is what it looks like :
 *Be aware that we can not be held responsible for any loss of productivity during development.*
 
 > **Note**
-> Support for previous Symfony versions was available in previous versions of this bundle.
+> Support for older Symfony and PHP versions was available in previous versions of this bundle.
 > See the [CHANGELOG](CHANGELOG.md) for more details.
 
 ## Installation
