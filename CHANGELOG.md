@@ -2,8 +2,7 @@
 
 ## Unreleased
 
-* Replaced Makefile with Castor task runner
-* Added development documentation for Castor
+* Replaced internal Makefile by Castor
 
 ## 1.10.0 (2026-02-03)
 
