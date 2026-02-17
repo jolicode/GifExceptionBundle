@@ -1,5 +1,9 @@
 # Changes between versions
 
+## Unreleased
+
+* Replaced internal Makefile by Castor
+
 ## 1.10.0 (2026-02-03)
 
 * Added support for PHP 8.5

@@ -49,6 +49,22 @@ Although it would probably make more sense to use the former and push up the opt
 
 It uses [gifsicle](https://www.lcdf.org/gifsicle/) to optimize gifs via the [image-optimizer](https://github.com/psliwa/image-optimizer) library.
 
+## Development
+
+This project uses [Castor](https://castor.jolicode.com/) as a task runner for common development tasks.
+
+To install Castor, see the [installation documentation](https://castor.jolicode.com/getting-started/installation).
+
+Available tasks:
+
+```shell
+castor list           # List all available tasks
+castor test           # Run the test suite
+castor cs             # Fix PHP coding standards
+castor cs --dry-run   # Check PHP coding standards
+castor phpstan        # Run static analysis
+```
+
 ## Further documentation
 
 You can see the current and past versions using one of the following:
