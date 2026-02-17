@@ -1,5 +1,10 @@
 # Changes between versions
 
+## Unreleased
+
+* Replaced Makefile with Castor task runner
+* Added development documentation for Castor
+
 ## 1.10.0 (2026-02-03)
 
 * Added support for PHP 8.5

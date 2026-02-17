@@ -48,7 +48,7 @@ changes, improvements or alternatives may be given).
 Run the tests using the following script:
 
 ```shell
-make test
+castor test
 ```
 
 ## Manual testing
@@ -70,7 +70,7 @@ Use [PHP CS fixer](https://cs.symfony.com/) to make your code compliant with
 GifExceptionBundle's coding standards:
 
 ```shell
-make cs
+castor cs
 ```
 
 ## Keeping your fork up-to-date

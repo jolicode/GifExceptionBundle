@@ -4,6 +4,10 @@
 /composer.lock
 /vendor
 
+# Castor
+/castor
+/.castor.stub.php
+
 # Temporary
 /tests/app/var
 /tests/app/public/bundles
