@@ -17,11 +17,11 @@ use function Castor\run;
 function cs(bool $dryRun = false): void
 {
     $command = 'vendor/bin/php-cs-fixer fix --verbose';
-    
+
     if ($dryRun) {
         $command .= ' --dry-run';
     }
-    
+
     run($command);
 }
 
