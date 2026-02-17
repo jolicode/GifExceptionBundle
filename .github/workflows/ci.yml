@@ -22,7 +22,7 @@ jobs:
                   extensions: mbstring, xml
 
             - name: Setup Castor
-              uses: castor-php/setup-castor@v0.1.0
+              uses: castor-php/setup-castor@v1.0.0
 
             - name: Install Composer dependencies
               run: composer install --prefer-dist --no-interaction
