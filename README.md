@@ -58,11 +58,11 @@ To install Castor, see the [installation documentation](https://castor.jolicode.
 Available tasks:
 
 ```shell
-castor list        # List all available tasks
-castor test        # Run the test suite
-castor cs          # Fix PHP coding standards
-castor cs:dry-run  # Check PHP coding standards
-castor phpstan     # Run static analysis
+castor list           # List all available tasks
+castor test           # Run the test suite
+castor cs             # Fix PHP coding standards
+castor cs --dry-run   # Check PHP coding standards
+castor phpstan        # Run static analysis
 ```
 
 ## Further documentation

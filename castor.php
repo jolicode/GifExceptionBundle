@@ -13,16 +13,16 @@ use Castor\Attribute\AsTask;
 
 use function Castor\run;
 
-#[AsTask(description: 'Fix PHP CS')]
-function cs(): void
+#[AsTask(description: 'Fix CS', aliases: ['cs'])]
+function cs(bool $dryRun = false): void
 {
-    run('vendor/bin/php-cs-fixer fix --verbose');
-}
-
-#[AsTask(name: 'cs:dry-run', description: 'Test if PHP CS is correct')]
-function cs_dry_run(): void
-{
-    run('vendor/bin/php-cs-fixer fix --verbose --dry-run');
+    $command = 'vendor/bin/php-cs-fixer fix --verbose';
+    
+    if ($dryRun) {
+        $command .= ' --dry-run';
+    }
+    
+    run($command);
 }
 
 #[AsTask(description: 'Run the test suite')]

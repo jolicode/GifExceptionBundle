@@ -28,7 +28,7 @@ jobs:
               run: composer install --prefer-dist --no-interaction
 
             - name: Run PHP-CS-Fixer check
-              run: castor cs:dry-run
+              run: castor cs --dry-run
 
     phpstan:
         name: PHPStan
