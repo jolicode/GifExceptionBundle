@@ -13,16 +13,14 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
-              uses: actions/checkout@v3
+              uses: actions/checkout@v6
 
             - name: Setup PHP
               uses: shivammathur/setup-php@v2
               with:
                   php-version: '8.4'
                   extensions: mbstring, xml
-
-            - name: Setup Castor
-              uses: castor-php/setup-castor@v1.0.0
+                  tools: castor
 
             - name: Install Composer dependencies
               run: composer install --prefer-dist --no-interaction
@@ -35,16 +33,14 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
-              uses: actions/checkout@v3
+              uses: actions/checkout@v6
 
             - name: Setup PHP
               uses: shivammathur/setup-php@v2
               with:
                   php-version: '8.4'
                   extensions: mbstring, xml
-
-            - name: Setup Castor
-              uses: castor-php/setup-castor@v0.1.0
+                  tools: castor
 
             - name: Install Composer dependencies
               run: composer install --prefer-dist --no-interaction
@@ -82,7 +78,7 @@ jobs:
                         symfony: '8.0.*'
         steps:
             - name: Checkout
-              uses: actions/checkout@v3
+              uses: actions/checkout@v6
 
             - name: Install gifsicle
               run: sudo apt-get update && sudo apt-get install -y gifsicle
@@ -93,6 +89,7 @@ jobs:
                   php-version: ${{ matrix.php-version }}
                   extensions: mbstring, xml
                   ini-values: phar.readonly="Off"
+                  tools: castor
 
             - name: "Configure Symfony"
               run: 'composer config extra.symfony.require "${{ matrix.symfony }}"'
@@ -102,7 +99,7 @@ jobs:
               run: echo "::set-output name=dir::$(composer config cache-files-dir)"
 
             - name: Cache composer dependencies
-              uses: actions/cache@v4
+              uses: actions/cache@v5
               with:
                   path: ${{ steps.composer-cache.outputs.dir }}
                   key: ${{ runner.os }}-composer-${{ github.sha }}
@@ -115,4 +112,4 @@ jobs:
               run: composer update --prefer-dist --no-interaction ${{ matrix.composer-flags }}
 
             - name: Run Tests
-              run: php vendor/bin/simple-phpunit
+              run: castor test
