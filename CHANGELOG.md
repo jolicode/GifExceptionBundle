@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.11.0 (2026-02-26)
+
 * Increased Gif size
 * Replaced internal Makefile by Castor
 * Dropped support for PHP < 8.2
