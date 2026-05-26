@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## 1.11.1 (2026-05-26)
+
+* Fixed deprecation notice from Symfony 8.1
+
 ## 1.11.0 (2026-02-26)
 
 * Increased Gif size
