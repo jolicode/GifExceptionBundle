@@ -34,7 +34,7 @@
         "symfony/dependency-injection": "^6.4 || ^7.3 || ^8.0",
         "symfony/error-handler": "^6.4 || ^7.3 || ^8.0",
         "symfony/http-kernel": "^6.4 || ^7.3 || ^8.0",
-        "symfony/monolog-bundle": "^3.8 || ^7.0",
+        "symfony/monolog-bundle": "^3.8 || ^4.0",
         "symfony/phpunit-bridge": "^6.3 || ^7.0",
         "symfony/stopwatch": "^6.4 || ^7.3 || ^8.0",
         "symfony/web-profiler-bundle": "^6.4 || ^7.3 || ^8.0",

@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+* Added support for Symfony 8.2
+
 ## 1.11.1 (2026-05-26)
 
 * Fixed deprecation notice from Symfony 8.1

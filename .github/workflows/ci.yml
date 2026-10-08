@@ -61,9 +61,9 @@ jobs:
                     - "8.5"
                 symfony:
                     - '6.4.*'
-                    - '7.3.*'
                     - '7.4.*'
                     - '8.0.*'
+                    - '8.1.*'
                 minimum-stability: ['']
                 composer-flags: ['']
                 name: ['']
@@ -71,11 +71,19 @@ jobs:
                     - php-version: 8.2
                       composer-flags: '--prefer-lowest'
                       name: '(prefer lowest dependencies)'
+                    - php-version: 8.5
+                      symfony: '8.2.*'
+                      minimum-stability: 'dev'
+                      name: '(dev)'
                 exclude:
                     -   php-version: "8.2"
                         symfony: '8.0.*'
                     -   php-version: "8.3"
                         symfony: '8.0.*'
+                    -   php-version: "8.2"
+                        symfony: '8.1.*'
+                    -   php-version: "8.3"
+                        symfony: '8.1.*'
         steps:
             - name: Checkout
               uses: actions/checkout@v6
@@ -92,7 +100,10 @@ jobs:
                   tools: castor
 
             - name: "Configure Symfony"
-              run: 'composer config extra.symfony.require "${{ matrix.symfony }}"'
+              run: |
+                  composer global config --no-plugins allow-plugins.symfony/flex true
+                  composer global require --no-progress --no-scripts --no-plugins symfony/flex
+                  composer config extra.symfony.require "${{ matrix.symfony }}"
 
             - name: Get composer cache directory
               id: composer-cache
@@ -106,7 +117,7 @@ jobs:
                   restore-keys: ${{ runner.os }}-composer-
 
             - name: Allow dev dependencies
-              run: if [ "${{ matrix.minimum-stability }}" = "dev" ]; then perl -pi -e 's/^}$/,"minimum-stability":"dev"}/' composer.json; fi;
+              run: if [ "${{ matrix.minimum-stability }}" = "dev" ]; then perl -pi -e 's/^}$/,"minimum-stability":"dev","prefer-stable":true}/' composer.json; fi;
 
             - name: Install Composer dependencies
               run: composer update --prefer-dist --no-interaction ${{ matrix.composer-flags }}

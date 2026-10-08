@@ -21,6 +21,7 @@ $fileHeaderComment = <<<'EOF'
 $finder = PhpCsFixer\Finder::create()
     ->in(__DIR__)
     ->exclude('app/var')
+    ->notPath('app/config/reference.php')
     ->append([
         __FILE__,
     ])

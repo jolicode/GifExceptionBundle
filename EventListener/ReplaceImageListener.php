@@ -57,9 +57,22 @@ class ReplaceImageListener implements EventSubscriberInterface
 
         $content = (string) $event->getResponse()->getContent();
 
+        $image = \sprintf('<img alt="Exception detected!" src="%s" data-gif style="height:100px" />', $url);
+
         $content = preg_replace(
-            '@<div class="exception-illustration hidden-xs-down">(.*?)</div>@ims',
-            \sprintf('<div class="exception-illustration hidden-xs-down" style="opacity:1; height: 100px"><img alt="Exception detected!" src="%s" data-gif style="height:100px" /></div>', $url),
+            [
+                // Symfony < 8.2: ghost next to the exception message
+                '@<div class="exception-illustration hidden-xs-down">(.*?)</div>@ims',
+                // Symfony >= 8.2: ghost moved to the bottom of the page, remove it
+                '@<div aria-hidden="true" class="exc-ghost">(.*?)</div>@ims',
+                // Symfony >= 8.2: put the gif next to the exception message instead
+                '@<div class="exceptions-header">@i',
+            ],
+            [
+                \sprintf('<div class="exception-illustration hidden-xs-down" style="opacity:1; height: 100px">%s</div>', $image),
+                '<div aria-hidden="true" class="exc-ghost"></div>',
+                \sprintf('<style>.exceptions-header{display:flex;align-items:center;gap:15px;padding-right:15px}.exceptions-header>:last-child{flex:1;min-width:0}.exceptions-header .exception-illustration{order:1;flex-shrink:0;padding:10px 0}.exceptions-header .exception-illustration img{display:block;height:80px;border-radius:var(--radius)}@media (max-width:575px){.exception-illustration{display:none}}</style><div class="exceptions-header"><div class="exception-illustration">%s</div>', $image),
+            ],
             $content
         );
 
