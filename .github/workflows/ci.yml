@@ -20,7 +20,9 @@ jobs:
               with:
                   php-version: '8.4'
                   extensions: mbstring, xml
-                  tools: castor
+
+            - name: Setup Castor
+              uses: castor-php/setup-castor@v1
 
             - name: Install Composer dependencies
               run: composer install --prefer-dist --no-interaction
@@ -40,7 +42,9 @@ jobs:
               with:
                   php-version: '8.4'
                   extensions: mbstring, xml
-                  tools: castor
+
+            - name: Setup Castor
+              uses: castor-php/setup-castor@v1
 
             - name: Install Composer dependencies
               run: composer install --prefer-dist --no-interaction
@@ -97,7 +101,9 @@ jobs:
                   php-version: ${{ matrix.php-version }}
                   extensions: mbstring, xml
                   ini-values: phar.readonly="Off"
-                  tools: castor
+
+            - name: Setup Castor
+              uses: castor-php/setup-castor@v1
 
             - name: "Configure Symfony"
               run: |
