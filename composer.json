@@ -25,7 +25,7 @@
     "require-dev": {
         "doctrine/annotations": "^2.0",
         "friendsofphp/php-cs-fixer": "^3.17",
-        "phpstan/phpstan": "^1.10",
+        "phpstan/phpstan": "^2.1",
         "spatie/image-optimizer": "^1.8",
         "symfony/asset": "^6.4 || ^7.3 || ^8.0",
         "symfony/browser-kit": "^6.4 || ^7.3 || ^8.0",
