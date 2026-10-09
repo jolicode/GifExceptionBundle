@@ -83,6 +83,11 @@ class FunctionalTest extends WebTestCase
             $image = $xpath->query('//div[contains(@class, "exception-illustration")]/svg')->item(0);
         }
 
+        if (!$image) {
+            // SF >= 8.2
+            $image = $xpath->query('//div[contains(@class, "exc-ghost")]/svg')->item(0);
+        }
+
         $this->assertNotNull($image);
 
         return $image;

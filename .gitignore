@@ -11,3 +11,5 @@
 # Temporary
 /tests/app/var
 /tests/app/public/bundles
+/tests/app/config/reference.php
+/tests/app/config/schema.json
