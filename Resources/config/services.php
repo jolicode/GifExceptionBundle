@@ -11,7 +11,6 @@
 
 namespace Joli\GifExceptionBundle\DependencyInjection\Loader\Configurator;
 
-use Joli\GifExceptionBundle\Command\GifOptimizerCommand;
 use Joli\GifExceptionBundle\EventListener\ReplaceImageListener;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
@@ -28,9 +27,5 @@ return static function (ContainerConfigurator $container) {
             service('assets.packages')->nullOnInvalid(),
         ])
         ->tag('kernel.event_subscriber')
-    ;
-    $container->services()
-        ->set(GifOptimizerCommand::class)
-        ->tag('console.command')
     ;
 };
