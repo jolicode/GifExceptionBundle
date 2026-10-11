@@ -22,4 +22,12 @@ class TestController
 
         throw new HttpException($statusCode, \sprintf('This is HTTP %s error page!', $statusCode));
     }
+
+    public function databaseErrorAction(): void
+    {
+        // Mimic a PDOException whose code is a SQLSTATE string, not an int
+        throw new class('Database is on fire!') extends \PDOException {
+            protected $code = 'HY000';
+        };
+    }
 }

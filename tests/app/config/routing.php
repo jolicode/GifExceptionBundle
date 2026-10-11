@@ -16,6 +16,9 @@ return static function (RoutingConfigurator $routes): void {
         ->requirements(['status' => '\d+'])
         ->defaults(['_controller' => 'Joli\GifExceptionBundle\Tests\app\src\TestController::errorAction'])
     ;
+    $routes->add('test_routing_database_error', '/database-error')
+        ->defaults(['_controller' => 'Joli\GifExceptionBundle\Tests\app\src\TestController::databaseErrorAction'])
+    ;
 
     try {
         $routes->import('@WebProfilerBundle/Resources/config/routing/wdt.xml')
