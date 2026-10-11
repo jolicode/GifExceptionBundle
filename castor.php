@@ -39,7 +39,7 @@ function phpstan(): void
 }
 
 #[AsTask(description: 'Optimize and resize gifs with gifsicle')]
-function optimize(string $dir = 'Resources/public/images', int $width = 145, string $level = '-O3'): void
+function optimize(string $dir = 'public/images', int $width = 145, string $level = '-O3'): void
 {
     foreach (glob("{$dir}/*/*.gif") ?: [] as $gif) {
         $before = filesize($gif);

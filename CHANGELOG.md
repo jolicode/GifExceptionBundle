@@ -6,6 +6,7 @@
 * Replaced the `gifexception:optimize` command and `bin/optimizer.php` by the `castor optimize` task
 * Upgraded the test suite to PHPUnit 11
 * Fixed a `TypeError` when the exception code is not an integer
+* Moved to the standard bundle directory structure (`src/`, `public/`) and `AbstractBundle`, the `GifExceptionExtension` class has been removed
 
 ## 1.11.1 (2026-05-26)
 

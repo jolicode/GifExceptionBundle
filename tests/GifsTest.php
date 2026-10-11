@@ -17,7 +17,7 @@ class GifsTest extends TestCase
 {
     public function testAllGifsAreResized(): void
     {
-        $gifs = glob(__DIR__ . '/../Resources/public/images/*/*.gif');
+        $gifs = glob(__DIR__ . '/../public/images/*/*.gif');
 
         self::assertNotEmpty($gifs);
 
