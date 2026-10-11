@@ -33,21 +33,14 @@ more gifs in [Resources/public/images/](Resources/public/images/), it will be ve
 
 ## Optimizing gifs
 
-If you are adding gifs we strongly recommend optimizing them. There is a tool to aid with this (you will need to install [gifsicle](http://www.lcdf.org/gifsicle/)).
+Every gif in the repository must be optimized and resized to 145px wide, the
+test suite enforces it. Before committing a new gif, run the
+[Castor](https://castor.jolicode.com/) task (you will need to install
+[gifsicle](https://www.lcdf.org/gifsicle/)):
 
+```shell
+castor optimize
 ```
-bin/optimizer.php
-```
-
-You can also run this command directly from your Symfony application:
-
-```
-bin/console gifexception:optimize
-```
-
-Although it would probably make more sense to use the former and push up the optimized gifs.
-
-It uses [gifsicle](https://www.lcdf.org/gifsicle/) to optimize gifs via the [image-optimizer](https://github.com/psliwa/image-optimizer) library.
 
 ## Development
 
@@ -63,6 +56,7 @@ castor test           # Run the test suite
 castor cs             # Fix PHP coding standards
 castor cs --dry-run   # Check PHP coding standards
 castor phpstan        # Run static analysis
+castor optimize       # Optimize and resize gifs
 ```
 
 ## Further documentation
