@@ -43,12 +43,13 @@ class ReplaceImageListener implements EventSubscriberInterface
 
         // Status code is not set by the exception controller but only by the
         // kernel at the very end.
-        // So lets use the status code from the flatten exception instead.
+        // So lets use the status code from the exception instead.
         // Unless it comes from a fatal error handler or exception base class
         if (method_exists($exception, 'getStatusCode')) {
-            $statusCode = $exception->getStatusCode();
+            $statusCode = (int) $exception->getStatusCode();
         } else {
-            $statusCode = $exception->getCode();
+            // getCode() may return a string (e.g. \PDOException), not a HTTP status
+            $statusCode = (int) $exception->getCode();
         }
 
         $dir = $this->getGifDir($statusCode);
