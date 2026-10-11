@@ -33,7 +33,10 @@ more gifs in [Resources/public/images/](Resources/public/images/), it will be ve
 
 ## Optimizing gifs
 
-If you are adding gifs we strongly recommend optimizing them. There is a [Castor](https://castor.jolicode.com/) task to aid with this (you will need to install [gifsicle](https://www.lcdf.org/gifsicle/)):
+Every gif in the repository must be optimized and resized to 145px wide, the
+test suite enforces it. Before committing a new gif, run the
+[Castor](https://castor.jolicode.com/) task (you will need to install
+[gifsicle](https://www.lcdf.org/gifsicle/)):
 
 ```shell
 castor optimize
