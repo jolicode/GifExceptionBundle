@@ -29,7 +29,7 @@ function cs(bool $dryRun = false): void
 #[AsTask(description: 'Run the test suite')]
 function test(): void
 {
-    run('vendor/bin/simple-phpunit');
+    run('vendor/bin/phpunit');
 }
 
 #[AsTask(description: 'Run static analysis')]

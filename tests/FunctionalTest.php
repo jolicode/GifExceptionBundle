@@ -17,6 +17,26 @@ use Symfony\Component\HttpKernel\KernelInterface;
 
 class FunctionalTest extends WebTestCase
 {
+    protected function tearDown(): void
+    {
+        parent::tearDown();
+
+        // FrameworkBundle::boot() calls ErrorHandler::register() on every kernel boot. Before
+        // symfony/error-handler 8.1, it left an exception handler registered when another error
+        // handler (PHPUnit's) was already in charge, which PHPUnit reports as a risky test.
+        // Remove this once Symfony < 8.1 is dropped.
+        while (true) {
+            $previous = set_exception_handler(static fn () => null);
+            restore_exception_handler();
+
+            if (null === $previous) {
+                break;
+            }
+
+            restore_exception_handler();
+        }
+    }
+
     public function testItDoesNotDisplayGifOnExceptionPageIfTheBundleIsNotEnabled(): void
     {
         $client = static::createClient(['environment' => 'prod', 'debug' => true]);

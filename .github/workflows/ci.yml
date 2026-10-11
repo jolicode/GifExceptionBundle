@@ -110,7 +110,7 @@ jobs:
 
             - name: Get composer cache directory
               id: composer-cache
-              run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+              run: echo "dir=$(composer config cache-files-dir)" >> "$GITHUB_OUTPUT"
 
             - name: Cache composer dependencies
               uses: actions/cache@v5
@@ -120,7 +120,8 @@ jobs:
                   restore-keys: ${{ runner.os }}-composer-
 
             - name: Allow dev dependencies
-              run: if [ "${{ matrix.minimum-stability }}" = "dev" ]; then perl -pi -e 's/^}$/,"minimum-stability":"dev","prefer-stable":true}/' composer.json; fi;
+              if: matrix.minimum-stability == 'dev'
+              run: composer config minimum-stability dev && composer config prefer-stable true
 
             - name: Install Composer dependencies
               run: composer update --prefer-dist --no-interaction ${{ matrix.composer-flags }}

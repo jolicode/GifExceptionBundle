@@ -4,6 +4,7 @@
 
 * Added support for Symfony 8.2
 * Replaced the `gifexception:optimize` command and `bin/optimizer.php` by the `castor optimize` task
+* Upgraded the test suite to PHPUnit 11
 
 ## 1.11.1 (2026-05-26)
 
