@@ -18,7 +18,7 @@ require dirname(__DIR__) . '/../../vendor/autoload.php';
 $_SERVER['APP_ENV'] ??= 'test';
 $_SERVER['APP_DEBUG'] = 1;
 
-umask(0000);
+umask(0o000);
 
 Debug::enable();
 

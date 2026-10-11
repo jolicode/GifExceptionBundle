@@ -23,7 +23,6 @@
         "symfony/twig-bundle": "^6.4 || ^7.3 || ^8.0"
     },
     "require-dev": {
-        "doctrine/annotations": "^2.0",
         "friendsofphp/php-cs-fixer": "^3.17",
         "phpstan/phpstan": "^2.1",
         "phpunit/phpunit": "^11.5",
