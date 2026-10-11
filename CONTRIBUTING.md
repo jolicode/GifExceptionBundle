@@ -57,8 +57,10 @@ If you want to manually test the error page, you can start the demo application
 by running the following command:
 
 ```shell
-cd tests/app && bin/console assets:install && symfony serve
+castor serve
 ```
+
+It requires the [Symfony CLI](https://symfony.com/download).
 
 Then open your browser at the displayed url (something like [http://127.0.0.1:8000](http://localhost:8000/).
 You can now browse urls like [http://127.0.0.1:8000/error-XXX](http://localhost:8000/error-404)

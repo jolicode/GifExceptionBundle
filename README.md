@@ -57,6 +57,7 @@ castor cs             # Fix PHP coding standards
 castor cs --dry-run   # Check PHP coding standards
 castor phpstan        # Run static analysis
 castor optimize       # Optimize and resize gifs
+castor serve          # Start the demo application
 ```
 
 ## Further documentation
