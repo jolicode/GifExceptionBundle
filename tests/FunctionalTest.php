@@ -37,6 +37,33 @@ class FunctionalTest extends WebTestCase
         }
     }
 
+    public function testItDoesNotDisplayGifWhenDebugIsDisabled(): void
+    {
+        $client = static::createClient(['environment' => 'dev', 'debug' => false]);
+
+        $client->request('GET', '/error-404');
+        $response = $client->getResponse();
+
+        self::assertSame(404, $response->getStatusCode());
+        self::assertStringNotContainsString('data-gif', (string) $response->getContent());
+        self::assertFalse(static::getContainer()->has('gif_exception.listener.replace_image'));
+    }
+
+    public function testItFallsBackToOtherGifsForNonHttpExceptions(): void
+    {
+        $client = static::createClient(['environment' => 'dev', 'debug' => true]);
+
+        $client->request('GET', '/database-error');
+        $response = $client->getResponse();
+
+        self::assertSame(500, $response->getStatusCode());
+
+        $image = $this->getImage((string) $response->getContent());
+
+        self::assertTrue($image->hasAttribute('data-gif'), 'Image was not replaced.');
+        self::assertStringMatchesFormat('%s/gifexception/images/other/%s.gif', $image->getAttribute('src'));
+    }
+
     public function testItDoesNotDisplayGifOnExceptionPageIfTheBundleIsNotEnabled(): void
     {
         $client = static::createClient(['environment' => 'prod', 'debug' => true]);
