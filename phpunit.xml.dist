@@ -23,12 +23,8 @@
     </testsuites>
     <source>
         <include>
-            <directory>.</directory>
+            <directory>src</directory>
         </include>
-        <exclude>
-            <directory>tests</directory>
-            <directory>vendor</directory>
-        </exclude>
     </source>
     <extensions>
         <bootstrap class="Symfony\Bridge\PhpUnit\SymfonyExtension" />

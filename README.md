@@ -8,7 +8,7 @@ The GhostBuster of your exception page!
 It displays a GIF instead of Symfony's ghost on exception page and it's compatible with Symfony versions from 6.4 to 8.2.
 Here is what it looks like :
 
-![Demo Symfony  4.4](Resources/doc/images/demo.gif)
+![Demo](docs/demo.gif)
 
 *Be aware that we can not be held responsible for any loss of productivity during development.*
 
@@ -29,7 +29,7 @@ Now enjoy your exceptions \o/
 ## Add some more gifs!
 
 We need you to improve the included GIFs! Do not hesitate to open PRs to add
-more gifs in [Resources/public/images/](Resources/public/images/), it will be very welcomed! :wink:
+more gifs in [public/images/](public/images/), it will be very welcomed! :wink:
 
 ## Optimizing gifs
 
@@ -57,6 +57,7 @@ castor cs             # Fix PHP coding standards
 castor cs --dry-run   # Check PHP coding standards
 castor phpstan        # Run static analysis
 castor optimize       # Optimize and resize gifs
+castor serve          # Start the demo application
 ```
 
 ## Further documentation

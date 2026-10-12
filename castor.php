@@ -10,7 +10,9 @@
  */
 
 use Castor\Attribute\AsTask;
+use Symfony\Component\Process\ExecutableFinder;
 
+use function Castor\context;
 use function Castor\io;
 use function Castor\run;
 
@@ -39,7 +41,7 @@ function phpstan(): void
 }
 
 #[AsTask(description: 'Optimize and resize gifs with gifsicle')]
-function optimize(string $dir = 'Resources/public/images', int $width = 145, string $level = '-O3'): void
+function optimize(string $dir = 'public/images', int $width = 145, string $level = '-O3'): void
 {
     foreach (glob("{$dir}/*/*.gif") ?: [] as $gif) {
         $before = filesize($gif);
@@ -49,4 +51,20 @@ function optimize(string $dir = 'Resources/public/images', int $width = 145, str
 
         io()->writeln(sprintf('%s: %d KB -> %d KB (%d%%)', $gif, $before / 1024, $after / 1024, 100 - $after * 100 / $before));
     }
+}
+
+#[AsTask(description: 'Start the demo application to test the error page manually')]
+function serve(): void
+{
+    if (null === (new ExecutableFinder())->find('symfony')) {
+        io()->error('The Symfony CLI is required, see https://symfony.com/download');
+
+        exit(1);
+    }
+
+    // Run from tests/app so assets:install targets tests/app/public, not the bundle's own public dir
+    $context = context()->withWorkingDirectory('tests/app');
+
+    run('bin/console assets:install', $context);
+    run('symfony serve', $context->withTty());
 }

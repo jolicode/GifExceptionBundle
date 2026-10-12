@@ -6,11 +6,8 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Joli\\GifExceptionBundle\\": ""
-        },
-        "exclude-from-classmap": [
-            "/tests/"
-        ]
+            "Joli\\GifExceptionBundle\\": "src/"
+        }
     },
     "autoload-dev": {
         "psr-4": {
